@@ -6,7 +6,7 @@ import com.eyes.eyesspace.constant.MediaConstant;
 import com.eyes.eyesspace.exception.BizException;
 import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.exception.EyesStorageException;
-import io.github.eyesyeager.eyesStorageStarter.service.EyesOssStorage;
+import io.github.eyesyeager.eyesStorageStarter.service.storage.MinioOssStorage;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 public class FileUtils {
 
 	@Resource
-	private EyesOssStorage eyesOssStorage;
+	private MinioOssStorage storage;
 
 	/**
 	 * 上传文件
@@ -40,8 +40,8 @@ public class FileUtils {
 			fileName += suffix;
 		}
 		try {
-			ObjectUploadModel model = eyesOssStorage.putObject(multipartFile.getBytes(), fileName, path);
-			return eyesOssStorage.getSimpleUrl(model.getObjectName(), path);
+			ObjectUploadModel model = storage.putObject(multipartFile.getBytes(), fileName, path);
+			return storage.getSimpleUrl(model.getObjectName(), path);
 		} catch (Exception e) {
 			throw new BizException("文件上传失败！", e);
 		}
@@ -57,8 +57,8 @@ public class FileUtils {
 	public String putObjectByUrl(String url, String path) throws BizException {
 		String fileName = UUID.fastUUID() + MediaConstant.DEFAULT_MEDIA_TYPE;
 		try {
-			ObjectUploadModel model = eyesOssStorage.putObjectByNetUrl(url, fileName, path);
-			return eyesOssStorage.getSimpleUrl(model.getObjectName(), path);
+			ObjectUploadModel model = storage.putObjectByNetUrl(url, fileName, path);
+			return storage.getSimpleUrl(model.getObjectName(), path);
 		} catch (EyesStorageException e) {
 			throw new BizException("网络文件上传失败！", e);
 		}

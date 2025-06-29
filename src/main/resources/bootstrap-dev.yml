@@ -8,7 +8,7 @@ spring:
         namespace: 3fa9923d-943f-48b0-81ae-1b1c4c44ad1c
         file-extension: yaml
         shared-configs:
-          - data-id: program.yaml
+          - data-id: program-video.yaml
             group: DEFAULT_GROUP
             refresh: true
           - data-id: context.yaml
