@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 import com.eyes.eyesspace.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,7 +36,6 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Service
-@RefreshScope
 public class AnimeServiceImpl extends ServiceImpl<AnimeMapper, Anime> implements IAnimeService {
 
 	private static final Integer ANIME_PAGE_SIZE = 6;

@@ -30,7 +30,6 @@ import com.eyes.eyesspace.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +37,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 @Slf4j
-@RefreshScope
 @Service
 public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IBlogService {
 	// 展示最大标签数

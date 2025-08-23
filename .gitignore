@@ -32,5 +32,4 @@ build/
 .vscode/
 
 log/
-bootstrap-dev.yaml
-bootstrap-prod.yaml
+bootstrap.yml

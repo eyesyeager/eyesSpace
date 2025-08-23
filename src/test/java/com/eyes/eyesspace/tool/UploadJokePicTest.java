@@ -1,30 +1,26 @@
-package com.eyes.eyesspace.task.joke;
+package com.eyes.eyesspace.tool;
 
 import com.alibaba.fastjson.JSON;
 import com.eyes.eyesspace.model.entity.Joke;
 import com.eyes.eyesspace.service.IJokeService;
-import com.eyes.eyesspace.task.AbstractTask;
 import com.eyes.eyesspace.utils.IOUtils;
 import com.eyes.eyesspace.utils.RandomUtils;
-import com.xxl.job.core.context.XxlJobHelper;
-import com.xxl.job.core.handler.annotation.XxlJob;
 import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.service.storage.MinioOssStorage;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 
-@RefreshScope
-@Component
-public class UploadJokePic extends AbstractTask {
-
+@Slf4j
+@SpringBootTest
+public class UploadJokePicTest {
     private static final String JOKE_PIC_NAME_SPLIT = "-";
 
     @Value("${path.folder.joke}")
@@ -36,18 +32,16 @@ public class UploadJokePic extends AbstractTask {
     @Resource
     private IJokeService jokeService;
 
-    @Override
-    @XxlJob("uploadJokePic")
+    @Test
     public void execute() {
         // 初始化参数
-        Map<String, Object> paramMap = buildParamMap(XxlJobHelper.getJobParam());
-        String localPath = (String) getNotNullParam(paramMap, "localPath");
+        String localPath = "";
 
         // 读取文件夹，得到文件列表
         File file = new File(localPath);
         File[] files = file.listFiles();
         if (Objects.isNull(files)) {
-            XxlJobHelper.handleFail("localPath " + localPath + " doesn't exist");
+            log.error("localPath {} doesn't exist", localPath);
             return;
         }
         List<String> invalidPicNameList = new ArrayList<>();
@@ -59,7 +53,7 @@ public class UploadJokePic extends AbstractTask {
                 FileInputStream fis = new FileInputStream(f);
                 data = IOUtils.inputStreamToBytes(fis);
             } catch (Exception e) {
-                XxlJobHelper.log("读取文件失败: {}", e.getMessage());
+                log.error("读取文件失败: {}", e.getMessage());
                 continue;
             }
 
@@ -79,7 +73,7 @@ public class UploadJokePic extends AbstractTask {
                 ObjectUploadModel model = minioOssStorage.putObject(data, objectName, jokePath);
                 url = minioOssStorage.getSimpleUrl(model.getObjectName(), jokePath);
             } catch (Exception e) {
-                XxlJobHelper.log("上传文件到 minio 失败! fileName: {}, err: {}", fileName, e.getMessage());
+                log.error("上传文件到 minio 失败! fileName: {}, err: {}", fileName, e.getMessage());
                 continue;
             }
 
@@ -101,7 +95,7 @@ public class UploadJokePic extends AbstractTask {
             for (String invalidPicName : invalidPicNameList) {
                 builder.append(invalidPicName).append(";");
             }
-            XxlJobHelper.log(builder.toString());
+            log.error(builder.toString());
         }
 
         // 批量写入数据库
@@ -112,12 +106,12 @@ public class UploadJokePic extends AbstractTask {
             joke.setCategory(entity.getCategory());
             joke.setUrlList(JSON.toJSONString(entity.getUrlList()));
             jokeList.add(joke);
-            XxlJobHelper.log("即将插入数据库！文件id:{}，文件链接:{}", entry.getKey(), joke.getUrlList());
+            log.info("即将插入数据库！文件id:{}，文件链接:{}", entry.getKey(), joke.getUrlList());
         }
         if (jokeService.saveBatch(jokeList)) {
-            XxlJobHelper.log("任务执行成功！共同步梗图记录数：{}", jokeList.size());
+            log.info("任务执行成功！共同步梗图记录数：{}", jokeList.size());
         } else {
-            XxlJobHelper.handleFail("文件插入数据库失败！");
+            log.error("文件插入数据库失败！");
         }
     }
 

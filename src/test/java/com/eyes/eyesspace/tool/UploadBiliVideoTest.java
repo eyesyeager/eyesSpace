@@ -1,33 +1,29 @@
-package com.eyes.eyesspace.task.video;
+package com.eyes.eyesspace.tool;
 
 import com.alibaba.fastjson.JSONArray;
 import com.eyes.eyesspace.model.entity.Video;
 import com.eyes.eyesspace.service.IVideoService;
-import com.eyes.eyesspace.task.AbstractTask;
 import com.eyes.eyesspace.utils.DateUtils;
 import com.eyes.eyesspace.utils.IOUtils;
 import com.eyes.eyesspace.utils.RandomUtils;
-import com.xxl.job.core.context.XxlJobHelper;
-import com.xxl.job.core.handler.annotation.XxlJob;
 import io.github.eyesyeager.eyesStorageStarter.entity.ObjectUploadModel;
 import io.github.eyesyeager.eyesStorageStarter.service.storage.MinioOssStorage;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-@RefreshScope
-@Component
-public class UploadBiliVideo extends AbstractTask {
+@Slf4j
+@SpringBootTest
+public class UploadBiliVideoTest {
 
     @Value("${path.folder.video}")
     private String videoPath;
@@ -41,13 +37,11 @@ public class UploadBiliVideo extends AbstractTask {
     @Resource
     private IVideoService videoService;
 
-    @Override
-    @XxlJob("uploadBiliVideo")
+    @Test
     public void execute() {
         // 初始化参数
-        Map<String, Object> paramMap = buildParamMap(XxlJobHelper.getJobParam());
-        String videoLocalPath = (String) getNotNullParam(paramMap, "videoLocalPath");
-        String infoLocalPath = (String) getNotNullParam(paramMap, "infoLocalPath");
+        String videoLocalPath = "H:\\temp\\video\\video";
+        String infoLocalPath = "H:\\temp\\video\\data.json";
 
         // 读取 info json 文件
         FileReader fileReader = null;
@@ -62,7 +56,7 @@ public class UploadBiliVideo extends AbstractTask {
                 jsonInfoBuilder.append((char) ch);
             }
         } catch (Exception e) {
-            XxlJobHelper.handleFail("failed to read info json file! error: " + e.getMessage());
+            log.error("failed to read info json file! error: {}", e.getMessage());
             return;
         } finally {
             try {
@@ -73,7 +67,7 @@ public class UploadBiliVideo extends AbstractTask {
                     reader.close();
                 }
             } catch (Exception e) {
-                XxlJobHelper.log("failed to close stream! error: {}", e);
+                log.error("failed to close stream!", e);
             }
         }
         List<BiliEntity> biliEntityList = JSONArray.parseArray(jsonInfoBuilder.toString(), BiliEntity.class);
@@ -82,7 +76,7 @@ public class UploadBiliVideo extends AbstractTask {
         File file = new File(videoLocalPath);
         File[] files = file.listFiles();
         if (Objects.isNull(files)) {
-            XxlJobHelper.handleFail("videoLocalPath " + videoLocalPath + " doesn't exist");
+            log.error("videoLocalPath {} doesn't exist", videoLocalPath);
             return;
         }
         for (File item : files) {
@@ -95,7 +89,7 @@ public class UploadBiliVideo extends AbstractTask {
                 entity = biliEntity;
             }
             if (entity == null) {
-                XxlJobHelper.log(fileName + " does not exist in json.");
+                log.error("{} does not exist in json.", fileName);
                 continue;
             }
             handleVideo(entity, item);
@@ -110,7 +104,7 @@ public class UploadBiliVideo extends AbstractTask {
             ObjectUploadModel model = minioOssStorage.putObjectByNetUrl(entity.getCover(), coverName, videoCoverPath);
             coverUrl = minioOssStorage.getSimpleUrl(model.getObjectName(), videoCoverPath);
         } catch (Exception e) {
-            XxlJobHelper.log("fail to upload video cover! error: {}", e);
+            log.error("fail to upload video cover!", e);
             return;
         }
         // 上传视频源文件
@@ -122,7 +116,7 @@ public class UploadBiliVideo extends AbstractTask {
             ObjectUploadModel model = minioOssStorage.putObject(data, videoName, videoPath);
             videoUrl = minioOssStorage.getSimpleUrl(model.getObjectName(), videoPath);
         } catch (Exception e) {
-            XxlJobHelper.log("fail to read file! error: {}", e);
+            log.error("fail to read file!", e);
             return;
         }
         // 写入数据库
@@ -137,9 +131,9 @@ public class UploadBiliVideo extends AbstractTask {
         video.setCreateTime(localDateTime);
         video.setUpdateTime(localDateTime);
         if (videoService.save(video)) {
-            XxlJobHelper.log( "video " + entity.getTitle() + " upload success!");
+            log.info("video {} upload success!", entity.getTitle());
         } else {
-            XxlJobHelper.log("failed to save db: {}", entity);
+            log.error("failed to save db: {}", entity);
         }
     }
 

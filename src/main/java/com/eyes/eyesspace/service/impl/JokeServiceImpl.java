@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,7 +25,6 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-@RefreshScope
 public class JokeServiceImpl extends ServiceImpl<JokeMapper, Joke> implements IJokeService {
 
 	private static final Integer JOKE_PAGE_SIZE = 20;

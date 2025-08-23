@@ -12,7 +12,6 @@ import com.eyes.eyesspace.service.UserService;
 import com.eyes.eyesspace.utils.SensitiveInfoUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,7 +21,6 @@ import javax.annotation.Resource;
  * date 2023/2/9 15:48
  */
 @Slf4j
-@RefreshScope
 @Service
 public class UserServiceImpl implements UserService {
 
