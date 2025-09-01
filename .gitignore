@@ -32,4 +32,9 @@ build/
 .vscode/
 
 log/
-application.yml
+application*.yml
+application*.yaml
+application*.properties
+bootstrap*.yml
+bootstrap*.yaml
+bootstrap*.properties
