@@ -56,7 +56,7 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
 		result.setCity(footprintInfo.getCity());
 		List<FootprintContentPO> data = footprintMapper.getFootprintContentList(id, (page - 1) * FOOTPRINT_CONTENT_PAGE_SIZE, FOOTPRINT_CONTENT_PAGE_SIZE, statusCondition)
 				.stream()
-				.peek(v -> v.setIsProtected(StatusEnum.PROTECTED.getStatus().equals(v.getStatus())))
+				.peek(v -> v.setIsPrivate(StatusEnum.PRIVATE.getStatus().equals(v.getStatus())))
 				.collect(Collectors.toList());
 		PageBind<FootprintContentPO> bind = new PageBind<>(page, footprintMapper.getFootprintContentNum(id, statusCondition), data);
 		result.setData(bind);

@@ -22,5 +22,5 @@ public class FootprintContentPO {
 	@JsonIgnore
 	private Integer status;
 
-	private Boolean isProtected;
+	private Boolean isPrivate;
 }

@@ -28,7 +28,7 @@ public class BlogInfoDTO {
 	@JsonIgnore
 	private Integer status;
 
-	private Boolean isProtected;
+	private Boolean isPrivate;
 
 	@JsonFormat(pattern = DateUtils.DATE_FORMAT)
 	private Date createTime;

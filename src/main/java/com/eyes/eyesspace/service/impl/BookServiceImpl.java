@@ -54,7 +54,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
 		if (Objects.isNull(result)) {
 			throw new BizException("该书不存在");
 		}
-		result.setIsProtected(StatusEnum.PROTECTED.getStatus().equals(result.getStatus()));
+		result.setIsPrivate(StatusEnum.PRIVATE.getStatus().equals(result.getStatus()));
 		// 更新点击量
 		if (!bookMapper.addView(id)) {
 			log.error("书单点击量更新失败");

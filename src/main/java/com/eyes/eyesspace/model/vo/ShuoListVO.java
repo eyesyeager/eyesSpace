@@ -13,7 +13,7 @@ public class ShuoListVO {
 
 	private List<String> picList;
 
-	private Boolean isProtected;
+	private Boolean isPrivate;
 
 	@JsonFormat(pattern = DateUtils.TIME_FORMAT)
 	private LocalDateTime createTime;

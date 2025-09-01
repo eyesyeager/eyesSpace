@@ -123,7 +123,7 @@ public class ShuoServiceImpl extends ServiceImpl<ShuoMapper, Shuoshuo> implement
 			List<ShuoshuoPic> shuoPicList = shuoPicListByIdMap.getOrDefault(item.getId(), new ArrayList<>());
 			shuoListVO.setPicList(shuoPicList.stream().map(ShuoshuoPic::getUrl).collect(Collectors.toList()));
 			shuoListVO.setCreateTime(item.getCreateTime());
-			shuoListVO.setIsProtected(StatusEnum.PROTECTED.getStatus().equals(item.getStatus()));
+			shuoListVO.setIsPrivate(StatusEnum.PRIVATE.getStatus().equals(item.getStatus()));
 			shuoListVOs.add(shuoListVO);
 		}
 		return new PageBind<>(page, shuoshuoIPage.getTotal(), shuoListVOs);

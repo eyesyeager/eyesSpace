@@ -29,7 +29,7 @@ public class BookInfoVO {
 	@JsonIgnore
 	private Integer status;
 
-	private Boolean isProtected;
+	private Boolean isPrivate;
 
 	@JsonFormat(pattern = DateUtils.DATE_FORMAT)
 	private String createTime;
