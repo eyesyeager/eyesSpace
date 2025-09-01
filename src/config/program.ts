@@ -16,6 +16,9 @@ const siteConfig = {
     mpThreshold: 800,
     enterURL: "enterURL",
     keepAliveRoute: ["Home", "Blog", "Shuoshuo", "Footprint", "Music", "Video", "Joke", "Anime", "Book", "Product", "Friend", "Version", "About"],
+    storageKey: {
+        privateKey: "privateKey",
+    }
 }
 
 const codeConfig = {

@@ -41,7 +41,7 @@ export default defineComponent({
         getVideoInfo();
       } else {
         // 从本地解析出未播放完的视频信息
-        videoData.value = utils.decryptObj(videoInfo);
+        videoData.value = utils.clarifyObj(videoInfo);
         refresh();
       }
     }
@@ -51,7 +51,7 @@ export default defineComponent({
         if (code == codeConfig.success) {
           videoData.value = data;
           // 将视频信息存入本地
-          localStorage.setItem(videoConfig.videoStorageKey, utils.encryptionObj(data));
+          localStorage.setItem(videoConfig.videoStorageKey, utils.confuseObj(data));
           refresh();
           return;
         } else {

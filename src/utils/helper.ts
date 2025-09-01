@@ -1,4 +1,6 @@
 import { SimplifyNumType } from "@/constant";
+import { siteConfig } from "@/config/program";
+import { aesDecrypt } from "./crypto";
 
 const utils = {
     // 防抖
@@ -91,16 +93,25 @@ const utils = {
         return (num / 10000).toFixed(1) + "M";
     },
 
-    // 对象加密
-    encryptionObj: (o: object) => {
+    // 对象混淆
+    confuseObj: (o: object) => {
         let text = JSON.stringify(o);
         return text.split("").reverse().join("");
     },
 
-    // 对象解密
-    decryptObj: (text: string) => {
+    // 反对象混淆
+    clarifyObj: (text: string) => {
         let objStr = text.split("").reverse().join("");
         return JSON.parse(objStr);
+    },
+
+    // 本地解密内容
+    localDecryptContent: (text: string) => {
+        let key = localStorage.getItem(siteConfig.storageKey.privateKey);
+        if (!key) {
+            return text;
+        }
+        return aesDecrypt(text, key);
     }
 };
 

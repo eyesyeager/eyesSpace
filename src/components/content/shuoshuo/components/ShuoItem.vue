@@ -1,7 +1,7 @@
 <template>
   <div class="shuoItem">
     <div class="content">
-      <common-md :content="props.content" :mdId="props.id" />
+      <common-md :content="content" :mdId="props.id" />
     </div>
     <div class="imgList" v-if="props.picList?.length">
       <div class="shuoImg" v-for="item in props.picList" :key="item">
@@ -15,9 +15,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import Image from "@/components/general/image/Image.vue";
 import CommonMd from "@/components/general/md/CommonMd.vue";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { Image, CommonMd },
@@ -25,11 +26,19 @@ export default defineComponent({
     id: Number,
     content: String,
     picList: Array<string>,
+    isPrivate: Boolean,
     createTime: String
   },
+
   setup(props) {
+
+    onMounted(() => {
+      console.log(props);
+    });
+
     return {
       props,
+      content: props.isPrivate ? utils.localDecryptContent(props.content!) : props.content,
     };
   },
 });

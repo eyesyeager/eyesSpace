@@ -7,6 +7,7 @@
       :content="item.content"
       :picList="item.picList"
       :comments="item.comments"
+      :isPrivate="item.isPrivate"
       :createTime="item.createTime"
     />
   </div>
