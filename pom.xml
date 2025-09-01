@@ -22,7 +22,6 @@
         <dbHook-spring-boot-starter.version>1.1.0</dbHook-spring-boot-starter.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <velocity-engine-core.version>2.3</velocity-engine-core.version>
-        <xxl-job-core.version>2.4.2</xxl-job-core.version>
         <hutool.version>5.8.25</hutool.version>
         <fastjson.version>1.2.49</fastjson.version>
         <userAgentUtils.version>1.21</userAgentUtils.version>

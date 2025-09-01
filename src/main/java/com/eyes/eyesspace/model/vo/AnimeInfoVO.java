@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 /**
@@ -27,6 +28,11 @@ public class AnimeInfoVO {
 	private String cover;
 
 	private Integer view;
+
+	@JsonIgnore
+	private Integer status;
+
+	private Boolean isProtected;
 
 	@JsonFormat(pattern = DateUtils.DATE_FORMAT)
 	private LocalDateTime createTime;

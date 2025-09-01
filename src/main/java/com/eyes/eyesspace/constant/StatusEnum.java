@@ -10,7 +10,9 @@ public enum StatusEnum {
 
 	PRIVATE(1, "私有"),
 
-	DELETE(2, "删除");
+	PROTECTED(2, "受保护"),
+
+	DELETE(3, "删除");
 
 	private final Integer status;
 

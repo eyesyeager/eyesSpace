@@ -2,6 +2,7 @@ package com.eyes.eyesspace.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
+import com.eyes.eyesspace.constant.StatusEnum;
 import com.eyes.eyesspace.mapper.FootprintMapper;
 import com.eyes.eyesspace.model.entity.Footprint;
 import com.eyes.eyesspace.model.po.FootprintContentPO;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author eyesYeager
@@ -52,7 +54,10 @@ public class FootprintServiceImpl extends ServiceImpl<FootprintMapper, Footprint
 		result.setCountry(footprintInfo.getCountry());
 		result.setProvince(footprintInfo.getProvince());
 		result.setCity(footprintInfo.getCity());
-		List<FootprintContentPO> data =  footprintMapper.getFootprintContentList(id, (page - 1) * FOOTPRINT_CONTENT_PAGE_SIZE, FOOTPRINT_CONTENT_PAGE_SIZE, statusCondition);
+		List<FootprintContentPO> data = footprintMapper.getFootprintContentList(id, (page - 1) * FOOTPRINT_CONTENT_PAGE_SIZE, FOOTPRINT_CONTENT_PAGE_SIZE, statusCondition)
+				.stream()
+				.peek(v -> v.setIsProtected(StatusEnum.PROTECTED.getStatus().equals(v.getStatus())))
+				.collect(Collectors.toList());
 		PageBind<FootprintContentPO> bind = new PageBind<>(page, footprintMapper.getFootprintContentNum(id, statusCondition), data);
 		result.setData(bind);
 		return result;

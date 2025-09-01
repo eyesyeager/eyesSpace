@@ -26,10 +26,10 @@ public interface AnimeMapper extends BaseMapper<Anime> {
 	@Select("select COUNT(*) from anime where ${statusCondition}")
 	Long getAnimeNum(String statusCondition);
 
-	@Select("select id, title, type, period, introduce, cover, view, create_time from anime where ${statusCondition} order by create_time desc limit #{start}, #{pageSize}")
+	@Select("select id, title, type, period, introduce, cover, `view`, create_time from anime where ${statusCondition} order by create_time desc limit #{start}, #{pageSize}")
 	List<AnimeListVO> getAnimeList(int start, int pageSize, String statusCondition);
 
-	@Select("select title, type, period, introduce, word, cover, view, create_time from anime where id=#{id} and ${statusCondition}")
+	@Select("select title, type, period, introduce, word, cover, `view`, status, create_time from anime where id=#{id} and ${statusCondition}")
 	AnimeInfoVO getAnimeInfo(Integer id, String statusCondition);
 
 	@Update("update anime set view=view+1 where id=#{id}")

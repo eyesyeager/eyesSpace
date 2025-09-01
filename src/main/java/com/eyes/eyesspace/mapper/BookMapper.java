@@ -26,7 +26,7 @@ public interface BookMapper extends BaseMapper<Book> {
 	@Select("select COUNT(*) from book where ${statusCondition}")
 	Long getBookNum(String statusCondition);
 
-	@Select("select title, author, type, period, introduce, word, `view`, create_time from book where id=#{id} and ${statusCondition}")
+	@Select("select title, author, type, period, introduce, word, `view`, status, create_time from book where id=#{id} and ${statusCondition}")
 	BookInfoVO getBookInfo(Integer id, String statusCondition);
 
 	@Update("update book set view=view+1 where id=#{id}")

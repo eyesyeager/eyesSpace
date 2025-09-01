@@ -2,6 +2,7 @@ package com.eyes.eyesspace.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.eyes.eyesAuth.context.UserInfoHolder;
+import com.eyes.eyesspace.constant.StatusEnum;
 import com.eyes.eyesspace.exception.BizException;
 import com.eyes.eyesspace.result.PageBind;
 import com.eyes.eyesspace.mapper.BookMapper;
@@ -53,6 +54,7 @@ public class BookServiceImpl extends ServiceImpl<BookMapper, Book> implements IB
 		if (Objects.isNull(result)) {
 			throw new BizException("该书不存在");
 		}
+		result.setIsProtected(StatusEnum.PROTECTED.getStatus().equals(result.getStatus()));
 		// 更新点击量
 		if (!bookMapper.addView(id)) {
 			log.error("书单点击量更新失败");

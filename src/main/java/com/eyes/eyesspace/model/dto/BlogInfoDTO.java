@@ -2,6 +2,7 @@ package com.eyes.eyesspace.model.dto;
 
 import com.eyes.eyesspace.utils.DateUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -24,8 +25,10 @@ public class BlogInfoDTO {
 
 	private Integer words;
 
-	@JsonInclude(JsonInclude.Include.NON_NULL)
+	@JsonIgnore
 	private Integer status;
+
+	private Boolean isProtected;
 
 	@JsonFormat(pattern = DateUtils.DATE_FORMAT)
 	private Date createTime;

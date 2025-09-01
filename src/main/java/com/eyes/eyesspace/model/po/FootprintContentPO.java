@@ -1,5 +1,6 @@
 package com.eyes.eyesspace.model.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 /**
@@ -17,4 +18,9 @@ public class FootprintContentPO {
 	private String timeFrom;
 
 	private String timeTo;
+
+	@JsonIgnore
+	private Integer status;
+
+	private Boolean isProtected;
 }

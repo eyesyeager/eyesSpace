@@ -149,9 +149,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
 		if (Objects.isNull(blogInfoDto)) {
 			throw new BizException("暂无数据");
 		}
-		if (!AuthConfigConstant.ROLE_ADMIN.equals(role)) {
-			blogInfoDto.setStatus(null);
-		}
+		blogInfoDto.setIsProtected(StatusEnum.PROTECTED.getStatus().equals(blogInfoDto.getStatus()));
 		blogInfoDto.setLabels(blogMapper.getLabelsById(id));
 		if (!blogMapper.addView(id)) {
 			log.error("博客阅读量更新失败");

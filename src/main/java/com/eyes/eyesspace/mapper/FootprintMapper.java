@@ -30,7 +30,7 @@ public interface FootprintMapper extends BaseMapper<Footprint> {
 	@Select("select count(*) from footprint_content where footprint_id = #{id} and ${statusCondition}")
 	Long getFootprintContentNum(Integer id, String statusCondition);
 
-	@Select("select id, `type`, content, time_from, time_to from footprint_content " +
+	@Select("select id, `type`, content, time_from, time_to, status from footprint_content " +
 			"where footprint_id = #{id} and ${statusCondition} " +
 			"order by create_time desc " +
 			"limit #{start}, #{pageSize}")

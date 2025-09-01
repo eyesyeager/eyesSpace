@@ -102,6 +102,7 @@ public class AnimeServiceImpl extends ServiceImpl<AnimeMapper, Anime> implements
 		if (Objects.isNull(result)) {
 			throw new BizException("该动漫不存在");
 		}
+		result.setIsProtected(StatusEnum.PROTECTED.getStatus().equals(result.getStatus()));
 		// 更新点击量
 		if (!animeMapper.addView(id)) {
 			log.error("动漫点击量更新失败");
