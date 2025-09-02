@@ -1,0 +1,23 @@
+executor:
+  name: musicBackupHook
+  cron: 0 * * 1/1 * ?
+
+monitor:
+  judgeSql: "
+    select * from (
+      select 'music' as category, music_url as url, create_time from music 
+      UNION 
+      select 'musicCover' as category, cover_url as url, create_time from music
+    ) as t where create_time > ? order by create_time limit 10"
+  resultType: entity
+  resultClass: com.eyes.eyesspace.model.bo.FieldFileHookBO
+  state:
+    enabled: true
+    fieldName: create_time
+    fieldType: datetime
+    defaultValue: 2000-01-01 00:00:00
+
+handler:
+  beanName: fieldFileDbHook
+  params:
+    appName: eyesspace
