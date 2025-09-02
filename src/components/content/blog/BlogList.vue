@@ -19,12 +19,22 @@ import { defineComponent } from "vue";
 import BlogItem from "@/components/content/blog/components/BlogItem.vue";
 import { blogContext } from "@/components/content/blog/businessTs/blogContext";
 
+interface BlogItem {
+  id: number | string;
+  title: string;
+  category: string;
+  words: number;
+  summary: string;
+  createTime: string;
+  views: number;
+}
+
 export default defineComponent({
   components: { BlogItem },
   setup() {
 
     return {
-      blogListData: blogContext.data,
+      blogListData: blogContext.data as BlogItem[],
     };
   },
 });

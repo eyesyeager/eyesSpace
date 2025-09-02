@@ -16,6 +16,7 @@ import { MdEditor, HeadMeta } from "@/components/content/blogDetail";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
 import { blogDetailContext } from "@/components/content/blogDetail/businessTs/blogDetailContext";
 import blogDetailProcess from "@/components/content/blogDetail/businessTs/blogDetailProcess";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { MdEditor, HeadMeta },
@@ -30,6 +31,9 @@ export default defineComponent({
       blogDetailProcess.cardInitFail.value = false;
       await $api.getBlogInfo([blogId.value]).then(({code, msg, data}) => {
         if(code == codeConfig.success) {
+          if (data.isPrivate) {
+            data.content = utils.localDecryptContent(data.content);
+          }
           blogDetailContext.init(data);
           blogDetailProcess.cardInitLoad.value = false;
         } else {

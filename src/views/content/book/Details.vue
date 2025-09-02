@@ -14,6 +14,7 @@ import { CardDirection, CardList, CardType } from "@/constant";
 import { codeConfig } from "@/config/program";
 import BookItem from "@/components/content/book/components/BookItem.vue";
 import { WordCard } from "@/components/general/card"; 
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { BookItem, WordCard },
@@ -31,6 +32,9 @@ export default defineComponent({
     async function getBookInfo() {
       $api.getBookInfo([bookId.value]).then(({ code, msg, data }) => {
         if (code == codeConfig.success) {
+          if (data.isPrivate) {
+            data.word = utils.localDecryptContent(data.word);
+          }
           bookData.value = data;
           bookSentry.value++;
         } else {

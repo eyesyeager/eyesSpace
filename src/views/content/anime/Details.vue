@@ -14,6 +14,7 @@ import { CardDirection, CardList, CardType } from "@/constant";
 import { codeConfig } from "@/config/program";
 import { AnimeItem } from "@/components/content/anime";
 import { WordCard } from "@/components/general/card"; 
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { AnimeItem, WordCard },
@@ -33,6 +34,9 @@ export default defineComponent({
     async function getAnimeInfo() {
       $api.getAnimeInfo([animeId.value]).then(({code, msg, data}) => {
         if (code == codeConfig.success) {
+          if (data.isPrivate) {
+            data.word = utils.localDecryptContent(data.word);
+          }
           animeData.value = data;
           animeSentry.value++;
         } else {

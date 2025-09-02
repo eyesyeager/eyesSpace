@@ -19,6 +19,7 @@ import { FootprintHead, FootprintContentList } from "@/components/content/footpr
 import { Wait } from "@/components/general/popup";
 import Pagination from "@/components/general/Pagination/pagination.vue";
 import { goBoth, GoBothType } from "@/hooks/useGoBoth";
+import utils from "@/utils/helper";
 
 export default defineComponent({
   components: { Wait, FootprintHead, Pagination, FootprintContentList },
@@ -54,6 +55,12 @@ export default defineComponent({
           province.value = data.province;
           city.value = data.city;
           total.value = data.data.total;
+          // 处理加密数据
+          data.data.data.forEach((v: any) => {
+            if (v.isPrivate) {
+              v.content = utils.localDecryptContent(v.content);
+            }
+          });
           footprintListData.value = data.data.data;
           show.value = false;
           footprintSentry.value++;
