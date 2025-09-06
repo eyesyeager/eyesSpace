@@ -1,6 +1,6 @@
 executor:
   name: musicBackupHook
-  cron: 0 15 10 ? * 6L 2002-2005
+  cron: 0 0 12 ? * WED
 
 monitor:
   judgeSql: "
