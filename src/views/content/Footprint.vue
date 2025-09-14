@@ -60,7 +60,6 @@ export default defineComponent({
                 title: city,
             });
             labelMarker.on("click", (e: any) => {
-                console.log(e);
                 window.open(router.resolve(`/footprint/details/${id}`).href, "_blank");
             });
             labelMarker.addTo(map.value);

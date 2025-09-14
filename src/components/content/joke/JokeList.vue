@@ -1,31 +1,21 @@
 <template>
   <div class="jokeList">
-    <div class="jokeItem" v-for="item in jokeListData" :key="item" @click.stop="handlePreview(item)">
-      <p>{{item.category}}</p>
+    <div class="jokeItem" v-for="item in jokeListData" :key="item">
+      <Image :imgArray="item" :url="item[0]" size="130px"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from "vue";
-import { ApiObject } from "@/d.ts/plugin";
-import { v3ImgPreviewFn } from "v3-img-preview";
+import { defineComponent } from "vue";
+import Image from "@/components/general/image/Image.vue";
 
 export default defineComponent({
   props: ["jokeListData"],
+  components: { Image },
   setup(props) {
-    const $api = inject<ApiObject>("$api")!;
-
-    function handlePreview(item: any) {
-      v3ImgPreviewFn({
-        images: <string[]>item.urlList,
-        index: 0
-      });
-    }
-
     return {
-      jokeListData: props.jokeListData,
-      handlePreview
+      jokeListData: props.jokeListData
     };
   },
 });
@@ -44,14 +34,7 @@ export default defineComponent({
   .jokeItem {
     width: 130px;
     height: 130px;
-    background-image: radial-gradient(#333, #888);
     margin: 0 10px 20px 10px;
-    cursor: pointer;
-    p {
-      color: #fff;
-      text-align: center;
-      line-height: 130px;
-    }
   }
 }
 </style>

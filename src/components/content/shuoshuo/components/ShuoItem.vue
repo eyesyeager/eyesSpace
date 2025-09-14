@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 import Image from "@/components/general/image/Image.vue";
 import CommonMd from "@/components/general/md/CommonMd.vue";
 import utils from "@/utils/helper";
@@ -31,11 +31,6 @@ export default defineComponent({
   },
 
   setup(props) {
-
-    onMounted(() => {
-      console.log(props);
-    });
-
     return {
       props,
       content: props.isPrivate ? utils.localDecryptContent(props.content!) : props.content,
