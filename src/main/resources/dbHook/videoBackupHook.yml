@@ -1,6 +1,6 @@
 executor:
   name: videoBackupHook
-  cron: 0 0 10 ? * WED
+  cron: 0 0 11 ? * WED
 
 monitor:
   judgeSql: "

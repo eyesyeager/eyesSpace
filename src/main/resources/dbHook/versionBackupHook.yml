@@ -1,0 +1,20 @@
+executor:
+  name: versionBackupHook
+  cron: 0 0 10 ? * WED
+
+monitor:
+  judgeSql: "select * from (
+      select 'version' as category, url, create_time from version_pic where create_time > ? order by create_time limit 10
+  ) as t"
+  resultType: entity
+  resultClass: com.eyes.eyesspace.model.bo.FieldFileHookBO
+  state:
+    enabled: true
+    fieldName: create_time
+    fieldType: datetime
+    defaultValue: 2000-01-01 00:00:00
+
+handler:
+  beanName: fieldFileDbHook
+  params:
+    appName: eyesspace
