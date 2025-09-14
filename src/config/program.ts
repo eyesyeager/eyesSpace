@@ -2,8 +2,8 @@ import { publicPath } from "@/router/path";
 
 const urlConfig = {
     siteUrl: process.env.VITE_SITE_URL!,
-    resourceUrl: "http://oss.eyescode.top/eyesspace/",
-    userResourceUrl: "http://oss.eyescode.top/eyesuser/",
+    resourceUrl: "https://oss.eyescode.top/eyesspace/",
+    userResourceUrl: "https://oss.eyescode.top/eyesuser/",
     warehouseUrl: "https://github.com/eyesyeager/eyesspace",
 };
 
