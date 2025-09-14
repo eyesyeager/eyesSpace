@@ -10,7 +10,6 @@ import com.eyes.eyesspace.constant.StatusEnum;
 import com.eyes.eyesspace.mapper.JokeMapper;
 import com.eyes.eyesspace.model.entity.Joke;
 import com.eyes.eyesspace.result.PageBind;
-import com.eyes.eyesspace.model.dto.JokeListDTO;
 import com.eyes.eyesspace.service.IJokeService;
 
 import java.util.List;
@@ -30,20 +29,16 @@ public class JokeServiceImpl extends ServiceImpl<JokeMapper, Joke> implements IJ
 	private static final Integer JOKE_PAGE_SIZE = 20;
 
 	@Override
-	public PageBind<JokeListDTO> getJokeList(Integer pageIndex) {
+	public PageBind<List<String>> getJokeList(Integer pageIndex) {
 		String role = UserInfoHolder.getRole();
 		Page<Joke> jokePage = new Page<>(pageIndex, JOKE_PAGE_SIZE);
 		Page<Joke> page = page(jokePage, Wrappers.<Joke>lambdaQuery()
 				.ne(AuthConfigConstant.ROLE_ADMIN.equals(role), Joke::getStatus, StatusEnum.DELETE.getStatus())
 				.eq(!AuthConfigConstant.ROLE_ADMIN.equals(role), Joke::getStatus, StatusEnum.PUBLIC.getStatus())
 				.orderByDesc(Joke::getCreateTime));
-		List<JokeListDTO> jokeDTOList = page.getRecords().stream().map(v -> {
-			JokeListDTO jokeListDTO = new JokeListDTO();
-			jokeListDTO.setId(v.getId());
-			jokeListDTO.setCategory(v.getCategory());
-			jokeListDTO.setUrlList(JSON.parseArray(v.getUrlList(), String.class));
-			return jokeListDTO;
-		}).collect(Collectors.toList());
+		List<List<String>> jokeDTOList = page.getRecords().stream()
+				.map(v -> JSON.parseArray(v.getUrlList(), String.class))
+				.collect(Collectors.toList());
 		return new PageBind<>(pageIndex, page.getTotal(), jokeDTOList);
 	}
 }

@@ -17,7 +17,6 @@ import javax.annotation.Resource;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +26,7 @@ import java.util.regex.Pattern;
  */
 
 @SpringBootTest
-public class SyncOldShuoData {
+public class SyncOldShuoDataScript {
 
     private static final String SHUO_PATH = "shuoshuo";
 

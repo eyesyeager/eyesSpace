@@ -2,8 +2,9 @@ package com.eyes.eyesspace.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.eyes.eyesspace.result.PageBind;
-import com.eyes.eyesspace.model.dto.JokeListDTO;
 import com.eyes.eyesspace.model.entity.Joke;
+
+import java.util.List;
 
 /**
  * @author eyesYeager
@@ -11,5 +12,5 @@ import com.eyes.eyesspace.model.entity.Joke;
  */
 public interface IJokeService extends IService<Joke> {
 
-	PageBind<JokeListDTO> getJokeList(Integer pageIndex);
+	PageBind<List<String>> getJokeList(Integer pageIndex);
 }

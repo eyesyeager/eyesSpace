@@ -1,5 +1,7 @@
 package com.eyes.eyesspace.dbHook;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONUtil;
 import com.eyes.eyesspace.model.bo.FieldFileHookBO;
 import io.github.eyesyeager.dbHookStarter.AbstractHook;
 import lombok.extern.slf4j.Slf4j;
@@ -10,8 +12,10 @@ import io.github.eyesyeager.eyesStorageStarter.exception.EyesStorageException;
 import io.github.eyesyeager.eyesStorageStarter.service.storage.QiniuOssStorage;
 import org.apache.commons.lang3.StringUtils;
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.Map;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Scope("prototype")
@@ -29,12 +33,14 @@ public class FieldFileDbHook extends AbstractHook {
         String appName = paramMap.get("appName");
         for (Object o : result) {
             log.info("deal result: {}", o.toString());
-            FieldFileHookBO entity = (FieldFileHookBO) o;
-            try {
-                ObjectUploadModel model = putObject(entity, appName);
-                log.info("successfully uploaded object: {}", model.toString());
-            } catch (Exception e) {
-                log.error("failed to uploaded object: {}", e.toString());
+            List<FieldFileHookBO> entityList = dealBO((FieldFileHookBO) o, paramMap);
+            for (FieldFileHookBO entity : entityList) {
+                try {
+                    ObjectUploadModel model = putObject(entity, appName);
+                    log.info("successfully uploaded object: {}", model.toString());
+                } catch (Exception e) {
+                    log.error("failed to uploaded object: {}", e.toString());
+                }
             }
         }
         log.info("------ FieldFileDbHook({}) task execution completed ------", executorName);
@@ -47,5 +53,33 @@ public class FieldFileDbHook extends AbstractHook {
         String[] split = entity.getUrl().split("/");
         String fileName = split[split.length - 1];
         return storage.putObjectByNetUrl(entity.getUrl(), fileName, appName + "/" + entity.getCategory());
+    }
+
+    private List<FieldFileHookBO> dealBO(FieldFileHookBO entity, Map<String, String> paramMap) {
+        String kind = paramMap.get("kind");
+        if ("jsonUrl".equals(kind)) {
+            // json类型的多url处理
+            return dealJsonUrl(entity);
+        } else if ("textUrl".equals(kind)) {
+            // 文本夹杂url处理
+            return dealTextUrl(entity);
+        }
+        return Collections.singletonList(entity);
+    }
+
+    private List<FieldFileHookBO> dealJsonUrl(FieldFileHookBO entity) {
+        JSONArray jsonArray = JSONUtil.parseArray(entity.getUrl());
+        List<String> urlList = JSONUtil.toList(jsonArray, String.class);
+        return urlList.stream().map(v -> {
+            FieldFileHookBO newEntity = new FieldFileHookBO();
+            newEntity.setCategory(entity.getCategory());
+            newEntity.setCreateTime(entity.getCreateTime());
+            newEntity.setUrl(v);
+            return newEntity;
+        }).collect(Collectors.toList());
+    }
+
+    private List<FieldFileHookBO> dealTextUrl(FieldFileHookBO entity) {
+        return Collections.singletonList(entity);
     }
 }

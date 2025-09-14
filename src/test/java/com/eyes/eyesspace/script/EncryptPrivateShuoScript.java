@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @SpringBootTest
-public class EncryptPrivateShuo {
+public class EncryptPrivateShuoScript {
 
     private static final String key = "";
 

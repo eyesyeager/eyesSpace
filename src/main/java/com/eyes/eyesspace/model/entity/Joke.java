@@ -24,8 +24,6 @@ public class Joke implements Serializable {
 
     private String urlList;
 
-    private String category;
-
     private Boolean status;
 
     private LocalDateTime createTime;
