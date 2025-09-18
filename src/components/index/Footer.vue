@@ -1,5 +1,5 @@
 <template>
-  <div class="footer" :class="{ static: positionSwitch, fixed: !positionSwitch }">
+  <div id="footer" :class="{ static: positionSwitch, fixed: !positionSwitch }">
     <div>{{context.copyright}}</div>
     <div><span class="zwfw" @click="jumpPage">{{context.zwfwCode}}</span></div>
   </div>
@@ -56,7 +56,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "@/assets/scss/index.scss";
 
-.footer {
+#footer {
   width: 100%;
   height: 100px;
   background: rgba($color: $white, $alpha: 0.7);

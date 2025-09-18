@@ -100,8 +100,11 @@ const Component: ComponentInterface = {
     footerStatus: ref(true),
     footerPosition: ref(true),
     footerPositionSwitch(clientHeight, HTMLHeight) {
-        if (!document.querySelector(".footer")) return;
-        Component.footerPosition.value = clientHeight < HTMLHeight;
+        let foot = document.querySelector("#footer");
+        if (!foot) {
+            return;
+        }
+        Component.footerPosition.value = clientHeight < HTMLHeight + foot.clientHeight;
     },
 
     // 全局工具按钮
