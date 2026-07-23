@@ -4,23 +4,28 @@ import { aesDecrypt } from "./crypto";
 
 const utils = {
     // 防抖
-    debounce: (fn: () => void, delay = 300) => {
+    debounce: (function () {
         let timer: NodeJS.Timeout | null = null;
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(() => {
-            fn();
-        }, delay);
-    },
+        return (fn: () => void, delay = 300) => {
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(() => {
+                fn();
+                timer = null;
+            }, delay);
+        };
+    })(),
 
     // 节流
-    throttle: (fn: () => void, delay = 300) => {
+    throttle: (function () {
         let timer: NodeJS.Timeout | null = null;
-        if (timer) return;
-        timer = setTimeout(() => {
-            fn();
-            timer = null;
-        }, delay);
-    },
+        return (fn: () => void, delay = 300) => {
+            if (timer) return;
+            timer = setTimeout(() => {
+                fn();
+                timer = null;
+            }, delay);
+        };
+    })(),
 
     // 设置cookie
     setCookie: (name: string, value: string, exdays: number) => {

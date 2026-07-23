@@ -34,7 +34,7 @@ export default defineComponent({
     let show = ref(true);
     let isFail = ref(false);
     let page = ref(1);
-    let pageSize = ref(6);
+    let pageSize = ref(10);
     let total = ref(0);
     let versionListData = ref([]);
     let versionSentry = ref(0);

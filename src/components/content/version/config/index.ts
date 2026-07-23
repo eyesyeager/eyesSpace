@@ -10,10 +10,6 @@ const dataCardConfig = [
     {
         title: "后端版本",
         name: "backendVersion"
-    },
-    {
-        title: "总版本数",
-        name: "versionNum"
     }
 ];
 

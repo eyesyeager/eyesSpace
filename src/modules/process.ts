@@ -57,7 +57,7 @@ const Popup: PopupInterface = {
         content: ""
     }),
     alertShow(msg) {
-        if (Popup.alertStatus.value = true) {
+        if (Popup.alertStatus.value === true) {
             Popup.alertStatus.value = false;
         }
         setTimeout(() => {

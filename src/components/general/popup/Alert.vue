@@ -29,7 +29,7 @@ export default defineComponent({
       () => $process.alertStatus.value,
       (value) => {
         status.value = value;
-        if ((value = true)) {
+        if (value) {
           msg.title = $process.alertMsg.title;
           msg.content = $process.alertMsg.content;
         }
