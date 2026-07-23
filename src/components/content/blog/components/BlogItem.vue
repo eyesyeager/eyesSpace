@@ -47,36 +47,62 @@ export default defineComponent({
 .blogItem {
   width: calc(100% - 5px);
   margin: 0 auto;
-  margin-top: 2px;
-  margin-bottom: 20px;
-  padding: 10px;
-  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  background: $white;
+  border-radius: 8px;
+  box-shadow: $shadow-card;
+  -webkit-box-shadow: $shadow-card;
+  -moz-box-shadow: $shadow-card;
   color: $normal;
   cursor: pointer;
+  transition: box-shadow $transition-normal, transform $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+    -webkit-box-shadow: $shadow-card-hover;
+    -moz-box-shadow: $shadow-card-hover;
+    transform: translateY(-2px);
+  }
+
   .title {
     min-height: 35px;
     font-size: 20px;
+    font-weight: 600;
     line-height: 35px;
+    color: $title;
+    margin-bottom: 6px;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $accent;
+    }
   }
   .meta {
     font-size: 13px;
     height: 20px;
     line-height: 20px;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
+    color: $assist;
   }
   .summary {
     min-height: 40px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-size: 15px;
-    line-height: 18px;
+    line-height: 1.6;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
   }
   .footer {
     height: 20px;
     line-height: 20px;
     display: flex;
     justify-content: space-between;
+    font-size: 13px;
+    color: $assist;
     .data {
       width: 200px;
       display: flex;

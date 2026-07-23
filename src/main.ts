@@ -4,6 +4,7 @@ import lazyPlugin from "vue3-lazy";
 import { $router, $api, $process, $context, $user, $window } from "@/plugins/index";
 import resource from "@/config/resource";
 
+import './assets/css/design-tokens.css';
 import './assets/css/index.css';
 import 'reset-css/reset.css';
 import "animate.css";

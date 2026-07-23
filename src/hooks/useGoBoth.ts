@@ -1,61 +1,17 @@
-let getScrollHeight = () => {
-    var scrollHeight = 0,
-        bodyScrollHeight = 0,
-        documentScrollHeight = 0;
-    if (document.body) {
-        bodyScrollHeight = document.body.scrollHeight;
-    }
-    if (document.documentElement) {
-        documentScrollHeight = document.documentElement.scrollHeight;
-    }
-    scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
-    return scrollHeight;
-}
-
 function goTopSpeed() {
-    let timer = setInterval(() => {
-        if (window.pageYOffset != 0) {
-            window.scroll(0, Math.max(window.pageYOffset - 50, 0));
-        } else {
-            clearInterval(timer);
-        }
-    }, 10);
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
 }
 
 function goTopTime(time = 1) {
-    let speed = window.pageYOffset / time / 100;
-    let timer = setInterval(() => {
-        if (window.pageYOffset != 0) {
-            window.scroll(0, Math.max(window.pageYOffset - speed, 0));
-        } else {
-            clearInterval(timer);
-        }
-    }, 10);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function goBottomSpeed() {
-    let times = (getScrollHeight() - window.pageYOffset) / 50;
-    let timer = setInterval(() => {
-        if (times > 0) {
-            window.scroll(0, Math.max(window.pageYOffset + 50, 0));
-            times--;
-        } else {
-            clearInterval(timer);
-        }
-    }, 10);
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' as ScrollBehavior });
 }
 
 function goBottomTime(time = 1) {
-    let speed = (getScrollHeight() - window.pageYOffset) / time / 100;
-    let times = (getScrollHeight() - window.pageYOffset) / speed;
-    let timer = setInterval(() => {
-        if (times > 0) {
-            window.scroll(0, Math.max(window.pageYOffset + speed, 0));
-            times--;
-        } else {
-            clearInterval(timer);
-        }
-    }, 10);
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
 }
 
 enum GoBothType {

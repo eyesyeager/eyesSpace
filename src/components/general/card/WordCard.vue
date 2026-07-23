@@ -26,17 +26,29 @@ export default defineComponent({
 
 .wordCard {
     min-height: 100px;
-    padding: 10px;
-    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    padding: 16px;
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $shadow-card;
+    -webkit-box-shadow: $shadow-card;
+    -moz-box-shadow: $shadow-card;
     color: $normal;
+    transition: box-shadow $transition-normal;
+
+    &:hover {
+        box-shadow: $shadow-card-hover;
+        -webkit-box-shadow: $shadow-card-hover;
+        -moz-box-shadow: $shadow-card-hover;
+    }
 
     .title {
         height: 30px;
         line-height: 30px;
         text-align: center;
         font-size: 20px;
+        font-weight: 600;
+        color: $title;
+        margin-bottom: 8px;
     }
 }
 

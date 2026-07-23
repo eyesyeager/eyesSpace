@@ -39,15 +39,23 @@ export default defineComponent({
   width: calc(100% - 5px);
   min-height: 200px;
   margin: 0 auto;
-  margin-top: 2px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  margin-bottom: 16px;
+  background: $white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+  -webkit-box-shadow: $shadow-card;
+  -moz-box-shadow: $shadow-card;
   color: $normal;
   display: flex;
   flex-direction: v-bind(direction);
+  transition: box-shadow $transition-normal, transform $transition-normal;
+
   &:hover {
+    box-shadow: $shadow-card-hover;
+    -webkit-box-shadow: $shadow-card-hover;
+    -moz-box-shadow: $shadow-card-hover;
+    transform: translateY(-2px);
     .cover {
         background-size: auto 110%;
     }
@@ -58,32 +66,39 @@ export default defineComponent({
     background-size: auto 100%;
     background-position: center center;
     background-repeat: no-repeat;
-    transition: 0.3s;
+    transition: 0.4s ease;
   }
   .content {
     width: 60%;
-    padding: 10px;
+    padding: 16px;
     .title {
         min-height: 40px;
-        font-size: 24px;
+        font-size: 22px;
+        font-weight: 600;
         text-align: center;
         line-height: 30px;
+        color: $title;
     }
     .info span {
         height: 20px;
         line-height: 20px;
         margin-right: 10px;
+        font-size: 13px;
+        color: $assist;
     }
     .introduce {
         margin: 10px 0;
         text-indent: 28px;
-        line-height: 18px;
+        line-height: 1.6;
+        font-size: 14px;
     }
     .footer {
         height: 20px;
         line-height: 20px;
         display: flex;
         justify-content: space-between;
+        font-size: 13px;
+        color: $assist;
     }
   }
 }

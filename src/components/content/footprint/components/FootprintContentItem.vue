@@ -37,27 +37,37 @@ export default defineComponent({
 .footprintItem {
     width: calc(100% - 5px);
     margin: 0 auto;
-    margin-top: 2px;
-    margin-bottom: 20px;
-    padding: 10px;
-    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $shadow-card;
+    -webkit-box-shadow: $shadow-card;
+    -moz-box-shadow: $shadow-card;
     color: $normal;
+    transition: box-shadow $transition-normal;
+
+    &:hover {
+        box-shadow: $shadow-card-hover;
+        -webkit-box-shadow: $shadow-card-hover;
+        -moz-box-shadow: $shadow-card-hover;
+    }
 
     .content {
         margin-bottom: 10px;
+        line-height: 1.8;
     }
 
     .foot {
-        font-size: 15px;
-        height: 40px;
-        margin-top: 10px;
-        padding-top: 5px;
-        line-height: 40px;
-        border-top: 1px dashed rgba($color: $black, $alpha: 0.5);
+        font-size: 13px;
+        height: 36px;
+        margin-top: 12px;
+        padding-top: 8px;
+        line-height: 36px;
+        border-top: 1px dashed rgba($color: $black, $alpha: 0.12);
         display: flex;
         justify-content: space-between;
+        color: $assist;
     }
 }
 </style>

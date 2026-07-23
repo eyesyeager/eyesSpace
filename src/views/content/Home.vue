@@ -67,12 +67,14 @@ export default defineComponent({
 
 .home {
     width: 100%;
+    min-height: 100vh;
 
     .content {
         width: 370px;
         position: fixed;
-        top: 15%;
-        left: calc(50% - 185px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
         .avatar {
             width: 110px;
@@ -81,13 +83,24 @@ export default defineComponent({
             border-radius: 50%;
             margin: 0px auto;
             margin-bottom: 20px;
+            box-shadow: $shadow-avatar;
+            -webkit-box-shadow: $shadow-avatar;
+            -moz-box-shadow: $shadow-avatar;
+            transition: transform $transition-slow, box-shadow $transition-slow;
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: $shadow-card-hover;
+                -webkit-box-shadow: $shadow-card-hover;
+                -moz-box-shadow: $shadow-card-hover;
+            }
         }
 
         .words {
             margin-bottom: 20px;
 
             .name {
-                font-size: 20px;
+                font-size: 22px;
+                font-weight: 600;
                 color: $title;
                 text-align: center;
                 margin-bottom: 10px;
@@ -96,6 +109,8 @@ export default defineComponent({
             .motto {
                 color: $normal;
                 text-align: center;
+                font-size: 14px;
+                line-height: 1.6;
             }
         }
 
@@ -103,22 +118,25 @@ export default defineComponent({
             color: $normal;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
-            margin: 0 50px;
+            justify-content: center;
+            gap: 4px;
+            margin: 0 40px;
             margin-top: 30px;
 
             .option {
-                width: 55px;
-                height: 30px;
                 text-align: center;
-                line-height: 30px;
 
                 span {
+                    display: inline-block;
+                    padding: 6px 14px;
+                    border-radius: 6px;
                     cursor: pointer;
+                    font-size: 14px;
+                    transition: color $transition-fast, background $transition-fast;
 
                     &:hover {
-                        color: rgb(127, 200, 248);
-                        transition: 0.3s;
+                        color: $accent;
+                        background: rgba($accent, 0.08);
                     }
                 }
             }

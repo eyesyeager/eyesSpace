@@ -39,27 +39,42 @@ export default defineComponent({
 @import "@/assets/scss/index.scss";
 
 .productItem {
-    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $shadow-card;
+    -webkit-box-shadow: $shadow-card;
+    -moz-box-shadow: $shadow-card;
     color: $normal;
-    padding: 10px;
+    padding: 16px 20px;
     display: flex;
     flex-direction: column;
+    transition: box-shadow $transition-normal, transform $transition-normal;
+
+    &:hover {
+        box-shadow: $shadow-card-hover;
+        -webkit-box-shadow: $shadow-card-hover;
+        -moz-box-shadow: $shadow-card-hover;
+        transform: translateY(-2px);
+    }
 
     .name {
         font-size: 20px;
-        font-weight: bold;
-        margin: 5px 0;
+        font-weight: 600;
+        margin: 4px 0;
+        color: $title;
     }
 
     .meta {
         text-align: right;
+        font-size: 13px;
+        color: $assist;
+        margin-bottom: 8px;
     }
 
     .introduce {
-        line-height: 18px;
+        line-height: 1.6;
         flex: 1;
+        font-size: 14px;
     }
 
     .footer {
@@ -67,6 +82,9 @@ export default defineComponent({
         line-height: 20px;
         display: flex;
         justify-content: space-between;
+        margin-top: 12px;
+        font-size: 13px;
+        color: $assist;
 
         .url {
             display: flex;
@@ -75,6 +93,10 @@ export default defineComponent({
             .target {
                 margin-left: 10px;
                 cursor: pointer;
+                transition: color $transition-fast;
+                &:hover {
+                    color: $accent;
+                }
             }
         }
     }

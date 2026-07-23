@@ -63,8 +63,11 @@ export default defineComponent({
   right: 0;
   width: 300px;
   height: 100vh;
-  background: $white;
+  background: rgba($white, 0.98);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   padding: 0 20px;
+  overflow-y: auto;
   .ownerCard {
     margin: 20px auto;
   }
@@ -73,9 +76,11 @@ export default defineComponent({
     flex-wrap: wrap;
     justify-content: flex-start;
     .option {
-      box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-      -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-      -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+      box-shadow: $shadow-card;
+      -webkit-box-shadow: $shadow-card;
+      -moz-box-shadow: $shadow-card;
+      border-radius: 8px;
+      background: $white;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -85,15 +90,31 @@ export default defineComponent({
       margin-right: calc(20px / 6);
       margin-bottom: 10px;
       cursor: pointer;
+      transition: box-shadow $transition-normal, transform $transition-normal, background $transition-fast;
       img {
         display: block;
         width: 25px;
         height: 25px;
         margin-right: 5px;
+        transition: transform $transition-normal;
       }
       .word {
         font-size: 15px;
         text-align: center;
+        color: $normal;
+      }
+      &:hover {
+        box-shadow: $shadow-card-hover;
+        -webkit-box-shadow: $shadow-card-hover;
+        -moz-box-shadow: $shadow-card-hover;
+        transform: translateY(-1px);
+        background: rgba($accent, 0.05);
+        img {
+          transform: scale(1.1);
+        }
+      }
+      &:active {
+        transform: translateY(0);
       }
     }
   }

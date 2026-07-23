@@ -114,17 +114,27 @@ export default defineComponent({
       display: flex;
       justify-content: space-around;
       margin-bottom: 10px;
+      gap: 12px;
       & > div {
         width: 120px;
         height: 40px;
         padding: 10px;
-        box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-        -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-        -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+        background: $white;
+        border-radius: 8px;
+        box-shadow: $shadow-card;
+        -webkit-box-shadow: $shadow-card;
+        -moz-box-shadow: $shadow-card;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: box-shadow $transition-normal, transform $transition-normal;
+        &:hover {
+          box-shadow: $shadow-card-hover;
+          -webkit-box-shadow: $shadow-card-hover;
+          -moz-box-shadow: $shadow-card-hover;
+          transform: translateY(-1px);
+        }
         img {
           width: 20px;
           left: 20px;

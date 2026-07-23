@@ -53,52 +53,85 @@ export default defineComponent({
 @import "@/assets/scss/index.scss";
 
 .alertAnimate-enter-active {
-  animation: bounceInRight 0.8s;
+  animation: slideInRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .alertAnimate-leave-active {
-  animation: bounceOutRight 0.8s;
+  animation: slideOutRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
 }
 
 .alert {
-  width: 250px;
+  width: 280px;
   min-height: 90px;
-  padding: 10px;
-  padding-bottom: 15px;
+  padding: 16px;
   box-sizing: border-box;
-  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  background: #fff;
+  background: rgba($white, 0.95);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-radius: 12px;
+  box-shadow: $shadow-xl;
+  -webkit-box-shadow: $shadow-xl;
+  -moz-box-shadow: $shadow-xl;
   position: fixed;
   z-index: 999;
-  top: 60px;
-  right: 50px;
+  top: 70px;
+  right: 24px;
   .title {
     display: flex;
-    height: 20px;
-    margin-top: 5px;
+    align-items: center;
+    height: 24px;
     .close {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
-      background: rgb(246, 108, 107);
+      background: $danger;
       color: #fff;
       text-align: center;
-      line-height: 20px;
+      line-height: 22px;
+      font-size: 14px;
       cursor: pointer;
+      transition: transform $transition-fast, opacity $transition-fast;
+      flex-shrink: 0;
+      &:hover {
+        transform: scale(1.1);
+        opacity: 0.9;
+      }
     }
     .content {
-      line-height: 20px;
+      line-height: 24px;
       margin-left: 10px;
       color: $title;
       font-size: 15px;
+      font-weight: 600;
     }
   }
   .value {
-    margin-left: 30px;
+    margin-left: 32px;
     margin-top: 10px;
     color: $normal;
     font-size: 13px;
+    line-height: 1.6;
   }
 }
 

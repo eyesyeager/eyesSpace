@@ -45,42 +45,75 @@ export default defineComponent({
 @import "@/assets/scss/index.scss";
 
 .baseDialogAnimate-enter-active {
-  animation: fadeIn 1s;
+  animation: dialogIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .baseDialogAnimate-leave-active {
-  animation: fadeOut 1s;
+  animation: dialogOut 0.2s ease;
+}
+
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes dialogOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
 }
 
 .baseDialog {
   width: 500px;
-  padding: 20px;
-  background: rgba($white, 0.9);
-  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  max-width: calc(100vw - 40px);
+  padding: 24px;
+  background: rgba($white, 0.95);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-radius: 12px;
+  box-shadow: $shadow-xl;
+  -webkit-box-shadow: $shadow-xl;
+  -moz-box-shadow: $shadow-xl;
   position: fixed;
   z-index: 1000;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   .close {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     position: absolute;
-    top: 15px;
-    right: 15px;
-    color: rgba($black, 0.6);
-    font-size: 20px;
+    top: 12px;
+    right: 12px;
+    color: rgba($black, 0.4);
+    font-size: 18px;
     text-align: center;
-    line-height: 20px;
+    line-height: 28px;
     cursor: pointer;
+    transition: color $transition-fast, background $transition-fast;
+    &:hover {
+      color: rgba($black, 0.7);
+      background: rgba($black, 0.06);
+    }
   }
   .title {
-    height: 20px;
+    height: 24px;
     font-size: 18px;
-    line-height: 20px;
+    font-weight: 600;
+    line-height: 24px;
     margin-bottom: 20px;
+    color: $title;
   }
 }
 

@@ -25,6 +25,13 @@ export default defineComponent({
 
 .content {
   text-align: center;
-  margin: 50px 0;
+  margin: 40px 0;
+  padding: 24px;
+  background: rgba($black, 0.02);
+  border-radius: 8px;
+  font-size: 16px;
+  color: $title;
+  letter-spacing: 0.5px;
+  word-break: break-all;
 }
 </style>

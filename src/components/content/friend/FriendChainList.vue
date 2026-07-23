@@ -51,33 +51,52 @@ export default defineComponent({
         height: 120px;
         margin: 20px 4%;
         display: flex;
-        box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-        -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-        -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+        background: $white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: $shadow-card;
+        -webkit-box-shadow: $shadow-card;
+        -moz-box-shadow: $shadow-card;
         cursor: pointer;
+        transition: box-shadow $transition-normal, transform $transition-normal;
+        &:hover {
+            box-shadow: $shadow-card-hover;
+            -webkit-box-shadow: $shadow-card-hover;
+            -moz-box-shadow: $shadow-card-hover;
+            transform: translateY(-2px);
+        }
         .cover {
-            border-radius: 5px 50% 50% 5px;
-            background-size: 100% 100%;
+            border-radius: 8px 0 0 8px;
+            background-size: cover;
+            background-position: center;
             flex: 0 0 120px;
         }
         .box {
-            padding: 5px;
+            padding: 12px;
             flex: 1;
             .name {
                 height: 30px;
                 line-height: 30px;
-                font-size: 20px;
+                font-size: 18px;
+                font-weight: 600;
                 overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
                 color: $title;
             }
             .introduce {
-                height: 60px;
+                height: 45px;
                 overflow: hidden;
+                font-size: 13px;
+                line-height: 1.6;
+                color: $normal;
             }
             .status {
                 height: 20px;
                 line-height: 20px;
                 text-align: right;
+                font-size: 12px;
+                color: $assist;
             }
         }
     }

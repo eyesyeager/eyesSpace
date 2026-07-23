@@ -30,18 +30,24 @@ export default defineComponent({
 .standardCard {
   .header {
     margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba($black, 0.06);
     display: flex;
+    align-items: center;
     img {
       width: 20px;
       height: 20px;
       display: block;
-      margin-right: 5px;
+      margin-right: 8px;
+      opacity: 0.7;
     }
     .title {
       height: 20px;
       line-height: 20px;
       font-size: 18px;
+      font-weight: 600;
       color: $title;
+      letter-spacing: 0.5px;
     }
   }
 }

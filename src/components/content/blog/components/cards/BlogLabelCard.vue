@@ -95,39 +95,42 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   color: $normal;
+  gap: 8px;
   .label {
     height: 30px;
     line-height: 20px;
-    padding: 5px;
-    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    padding: 5px 10px;
+    background: rgba($black, 0.03);
+    border-radius: 6px;
     display: flex;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    align-items: center;
     cursor: pointer;
-    transition: 0.5s;
+    transition: all $transition-normal;
     &:hover {
       color: $white;
-      background: rgb(127, 200, 248);
-      box-shadow: 0 0 0 #000;
-      -webkit-box-shadow: 0 0 0 #000;
-      -moz-box-shadow: 0 0 0 #000;
+      background: $accent;
+      box-shadow: $shadow-card;
+      -webkit-box-shadow: $shadow-card;
+      -moz-box-shadow: $shadow-card;
     }
     .name {
       margin-right: 5px;
+    }
+    .num {
+      font-size: 12px;
+      opacity: 0.7;
     }
   }
 }
 
 .active {
-  color: $white;
-  background: rgb(127, 248, 135);
-  box-shadow: 0 0 0 #000 !important;
-  -webkit-box-shadow: 0 0 0 #000 !important;
-  -moz-box-shadow: 0 0 0 #000 !important;
+  color: $white !important;
+  background: rgb(127, 200, 248) !important;
+  box-shadow: $shadow-card !important;
+  -webkit-box-shadow: $shadow-card !important;
+  -moz-box-shadow: $shadow-card !important;
   &:hover {
-    background: rgb(127, 248, 135) !important;
+    background: $accent-hover !important;
   }
 }
 </style>

@@ -87,9 +87,10 @@ export default defineComponent({
     transform: translate(-50%, -50%);
   }
   .circle {
-    border: 2px dashed #409eff;
+    border: 2px solid rgba(64, 158, 255, 0.15);
+    border-top-color: #409eff;
     border-radius: 50%;
-    animation: circleAnimate 1s cubic-bezier(.89,.27,.06,.59) infinite;
+    animation: circleSpin 0.8s linear infinite;
   }
   .error {
     background-image: v-bind(failImg);
@@ -97,7 +98,7 @@ export default defineComponent({
   }
 }
 
-@keyframes circleAnimate {
+@keyframes circleSpin {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
   }

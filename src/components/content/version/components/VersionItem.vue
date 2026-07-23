@@ -43,32 +43,46 @@ export default defineComponent({
 .versionItem {
   width: calc(100% - 5px);
   margin: 0 auto;
-  margin-top: 2px;
-  margin-bottom: 20px;
-  padding: 10px;
-  box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-  -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  background: $white;
+  border-radius: 8px;
+  box-shadow: $shadow-card;
+  -webkit-box-shadow: $shadow-card;
+  -moz-box-shadow: $shadow-card;
   color: $normal;
+  transition: box-shadow $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-card-hover;
+    -webkit-box-shadow: $shadow-card-hover;
+    -moz-box-shadow: $shadow-card-hover;
+  }
+
   .header {
-    font-size: 26px;
-    margin-top: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
     text-align: center;
+    color: $title;
   }
   .content {
     margin-bottom: 10px;
+    line-height: 1.8;
   }
   .imgList {
     display: flex;
     justify-content: start;
     flex-wrap: wrap;
+    gap: 6px;
     .versionImg {
-      margin-right: 5px;
-      margin-bottom: 5px;
     }
   }
   .footer {
     text-align: right;
+    font-size: 13px;
+    color: $assist;
+    margin-top: 8px;
   }
 }
 </style>

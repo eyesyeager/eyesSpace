@@ -65,8 +65,15 @@ export default defineComponent({
     li {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
+        padding: 4px 0;
         color: $normal;
+        font-size: 14px;
+        transition: color $transition-fast;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 </style>

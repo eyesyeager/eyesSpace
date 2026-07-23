@@ -1,8 +1,10 @@
 <template>
   <router-view v-slot="{ Component }">
-    <template v-if="Component">
-      <component :is="Component" v-if="isShow" />
-    </template>
+    <transition name="page-fade" mode="out-in">
+      <template v-if="Component">
+        <component :is="Component" v-if="isShow" />
+      </template>
+    </transition>
   </router-view>
 
   <!-- 弹出层 -->

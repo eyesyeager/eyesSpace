@@ -90,12 +90,26 @@ export default defineComponent({
 
 .pagination {
     width: v-bind(width);
-    margin: 0 auto;
+    margin: 20px auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
     color: $normal;
+    font-size: 14px;
     .pager {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
         cursor: pointer;
+        transition: background $transition-fast, color $transition-fast;
+        &:hover {
+            background: rgba($accent, 0.08);
+            color: $accent;
+        }
     }
     .prev {
         cursor: v-bind(prevCursor);
@@ -104,13 +118,27 @@ export default defineComponent({
         cursor: v-bind(nextCursor);
     }
     .number {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
         cursor: pointer;
+        transition: background $transition-fast, color $transition-fast;
+        &:hover {
+            background: rgba($accent, 0.08);
+            color: $accent;
+        }
     }
 }
 
 .current {
-    color: rgb(107,158,255);
+    background: rgba($primary, 0.1) !important;
+    color: $primary !important;
+    font-weight: 600;
     cursor: default !important;
+    border-radius: 6px;
 }
 
 .ellipsis {

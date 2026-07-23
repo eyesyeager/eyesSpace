@@ -36,10 +36,14 @@ export default defineComponent({
 @import "@/assets/scss/index.scss";
 
 .maskAnimate-enter-active {
-  animation: fadeIn 0.5s;
+  transition: opacity 0.3s ease;
 }
 .maskAnimate-leave-active {
-  animation: fadeOut 0.5s;
+  transition: opacity 0.25s ease;
+}
+.maskAnimate-enter-from,
+.maskAnimate-leave-to {
+  opacity: 0;
 }
 
 .mask {
@@ -49,6 +53,8 @@ export default defineComponent({
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba($black, 0.5);
+    background: rgba($black, 0.45);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 </style>

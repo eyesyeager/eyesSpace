@@ -45,17 +45,30 @@ export default defineComponent({
     border-radius: 50%;
     margin: 0px auto;
     margin-bottom: 20px;
+    box-shadow: $shadow-avatar;
+    -webkit-box-shadow: $shadow-avatar;
+    -moz-box-shadow: $shadow-avatar;
+    transition: transform $transition-slow, box-shadow $transition-slow;
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: $shadow-card-hover;
+      -webkit-box-shadow: $shadow-card-hover;
+      -moz-box-shadow: $shadow-card-hover;
+    }
   }
   .words {
     .name {
       font-size: 20px;
+      font-weight: 600;
       color: $title;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .motto {
       color: $normal;
       text-align: center;
+      font-size: 13px;
+      line-height: 1.6;
     }
   }
 }

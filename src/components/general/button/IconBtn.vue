@@ -27,18 +27,38 @@ export default defineComponent({
 .iconBtn {
     width: 95px;
     height: 35px;
-    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $shadow-card;
+    -webkit-box-shadow: $shadow-card;
+    -moz-box-shadow: $shadow-card;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: box-shadow $transition-normal, transform $transition-normal, background $transition-fast;
+    user-select: none;
     .icon {
         width: 20px;
         height: 20px;
         display: block;
-        margin-right: 3px;
+        margin-right: 4px;
+        transition: transform $transition-normal;
+    }
+    &:hover {
+        box-shadow: $shadow-card-hover;
+        -webkit-box-shadow: $shadow-card-hover;
+        -moz-box-shadow: $shadow-card-hover;
+        transform: translateY(-1px);
+        .icon {
+            transform: scale(1.1);
+        }
+    }
+    &:active {
+        transform: translateY(0);
+        box-shadow: $shadow-card;
+        -webkit-box-shadow: $shadow-card;
+        -moz-box-shadow: $shadow-card;
     }
 }
 </style>

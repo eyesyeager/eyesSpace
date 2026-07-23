@@ -49,11 +49,12 @@ export default defineComponent({
   display: flex;
   .barItem {
     width: 60px;
-    margin-right: 20px;
+    margin-right: 24px;
     .option, .link, .child {
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: opacity $transition-fast;
       img {
         width: 16px;
         height: 16px;
@@ -63,6 +64,9 @@ export default defineComponent({
         line-height: 20px;
         margin-left: 5px;
       }
+      &:hover {
+        opacity: 0.7;
+      }
     }
     .option {
       cursor: pointer;
@@ -70,22 +74,39 @@ export default defineComponent({
     .dropDown {
       position: relative;
       cursor: default;
+      .link:hover {
+        opacity: 0.7;
+      }
       .list {
-        width: 0;
-        height: 0;
-        overflow: hidden;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 0;
+        background: rgba($white, 0.95);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        border-radius: 8px;
+        box-shadow: $shadow-dropdown;
+        -webkit-box-shadow: $shadow-dropdown;
         opacity: 0;
-        transition: opacity 0.5s;
+        visibility: hidden;
+        transition: opacity $transition-normal, visibility $transition-normal;
       }
       &:hover .list {
-        width: 60px;
-        height: auto;
         opacity: 1;
+        visibility: visible;
       }
       .child {
-        margin-top: 20px;
-        backdrop-filter: blur(1px);
+        margin-top: 0;
+        padding: 8px 16px;
+        white-space: nowrap;
         cursor: pointer;
+        transition: background $transition-fast;
+        &:hover {
+          background: rgba($accent, 0.08);
+          opacity: 1;
+        }
       }
     }
   }

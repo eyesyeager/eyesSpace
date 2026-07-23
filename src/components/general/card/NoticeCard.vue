@@ -48,6 +48,7 @@ export default defineComponent({
 
 .noticeCard {
   color: $normal;
-  line-height: 18px;
+  line-height: 1.8;
+  font-size: 14px;
 }
 </style>

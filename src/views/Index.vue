@@ -6,10 +6,12 @@
     </transition>
     <div class="content">
       <side-card class="cardGroup" v-if="sideCardSwitch" />
-      <router-view v-slot="{ Component }">
-        <keep-alive :include="keepAliveRoute">
-          <component class="component" :is="Component" />
-        </keep-alive>
+      <router-view v-slot="{ Component, route }">
+        <transition name="page-transition" mode="out-in">
+          <keep-alive :include="keepAliveRoute">
+            <component class="component" :is="Component" :key="route.fullPath" />
+          </keep-alive>
+        </transition>
       </router-view>
     </div>
     <Footer v-if="footerSwitch" />
@@ -71,10 +73,21 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .sideBarAnimate-enter-active {
-  animation: fadeInRight 0.5s;
+  animation: fadeInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .sideBarAnimate-leave-active {
-  animation: fadeOutRight 0.5s;
+  animation: fadeOutRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-transition-enter-active {
+  transition: opacity 0.2s ease;
+}
+.page-transition-leave-active {
+  transition: opacity 0.15s ease;
+}
+.page-transition-enter-from,
+.page-transition-leave-to {
+  opacity: 0;
 }
 
 .index {
@@ -82,11 +95,13 @@ export default defineComponent({
     width: 1200px;
     margin: 0 auto;
     margin-top: 70px;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: v-bind(sideCardPosition);
     justify-content: space-between;
     .cardGroup {
       width: 300px;
+      flex-shrink: 0;
     }
     .component {
       flex: 1;
@@ -119,6 +134,7 @@ export default defineComponent({
   .content {
     width: 100% !important;
     flex-direction: column-reverse !important;
+    margin-top: 60px !important;
     .cardGroup {
       width: 100% !important;
       min-width: 350px;

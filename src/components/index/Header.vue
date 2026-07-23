@@ -105,9 +105,11 @@ export default defineComponent({
   margin: 0 auto;
   height: 60px;
   padding: 20px 40px 20px 40px;
-  background: rgba($white, 0.7);
+  background: rgba($white, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   color: $normal;
-  transition: top 0.5s;
+  transition: top 0.5s, box-shadow $transition-normal;
   position: fixed;
   z-index: 998;
   top: 0;
@@ -115,34 +117,53 @@ export default defineComponent({
   transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 0 rgba($black, 0.04);
   .space {
     width: 140px;
     height: 20px;
     color: $title;
     line-height: 20px;
     font-size: 20px;
+    font-weight: 600;
     cursor: pointer;
+    transition: opacity $transition-fast;
+    &:hover {
+      opacity: 0.7;
+    }
   }
   .bar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .menuBar {
       width: 30px;
       height: 30px;
       background-size: 100% 100%;
-      transform: translate(-10px, -5px);
+      transform: translate(-10px, 0);
       cursor: pointer;
+      border-radius: 4px;
+      transition: background-color $transition-fast;
+      &:hover {
+        background-color: rgba($black, 0.05);
+      }
     }
     .avatar {
       width: 40px;
       height: 40px;
       background-size: 100% 100%;
       border-radius: 50%;
-      transform: translateY(-10px);
-      box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-      -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-      -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+      box-shadow: $shadow-avatar;
+      -webkit-box-shadow: $shadow-avatar;
+      -moz-box-shadow: $shadow-avatar;
       cursor: pointer;
+      transition: transform $transition-normal, box-shadow $transition-normal;
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: $shadow-card-hover;
+        -webkit-box-shadow: $shadow-card-hover;
+        -moz-box-shadow: $shadow-card-hover;
+      }
     }
   }
 }

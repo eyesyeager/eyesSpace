@@ -10,8 +10,19 @@
 .baseCard {
     width: 100%;
     padding: 20px;
-    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
+    background: $white;
+    border-radius: 8px;
+    box-shadow: $shadow-card;
+    -webkit-box-shadow: $shadow-card;
+    -moz-box-shadow: $shadow-card;
+    transition: box-shadow $transition-normal, transform $transition-normal;
+    will-change: box-shadow, transform;
+
+    &:hover {
+        box-shadow: $shadow-card-hover;
+        -webkit-box-shadow: $shadow-card-hover;
+        -moz-box-shadow: $shadow-card-hover;
+        transform: translateY(-1px);
+    }
 }
 </style>

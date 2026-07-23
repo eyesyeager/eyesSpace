@@ -59,7 +59,10 @@ export default defineComponent({
 #footer {
   width: 100%;
   height: 100px;
-  background: rgba($color: $white, $alpha: 0.7);
+  background: rgba($color: $white, $alpha: 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-top: 1px solid rgba($black, 0.04);
   color: $normal;
   display: flex;
   flex-direction: column;
@@ -70,6 +73,10 @@ export default defineComponent({
   }
   .zwfw {
     cursor: pointer;
+    transition: color $transition-fast;
+    &:hover {
+      color: $accent;
+    }
   }
 }
 

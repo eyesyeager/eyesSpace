@@ -55,28 +55,33 @@ export default defineComponent({
 .tip {
   position: fixed;
   z-index: 1000;
-  top: 20px;
+  top: 80px;
   left: 50%;
   transform: translateX(-50%);
+  pointer-events: none;
   .tipItem {
     min-width: 150px;
-    max-width: 300px;
-    min-height: 30px;
-    background: $white;
-    box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -webkit-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    -moz-box-shadow: 0 0 3px rgba($color: $black, $alpha: 0.8);
-    padding: 5px 10px;
+    max-width: 320px;
+    min-height: 36px;
+    background: rgba($white, 0.95);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: $shadow-lg;
+    -webkit-box-shadow: $shadow-lg;
+    -moz-box-shadow: $shadow-lg;
+    border-radius: 8px;
+    padding: 10px 16px;
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: $normal;
+    font-size: 14px;
     img {
       width: 20px;
       height: 20px;
       display: block;
-      margin-right: 3px;
+      margin-right: 8px;
     }
   }
 }

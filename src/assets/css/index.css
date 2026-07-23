@@ -1,15 +1,87 @@
+/* ========== 基础重置与全局样式 ========== */
 div {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
+/* 选中文字颜色 */
+::selection {
+  background: rgba(127, 200, 248, 0.25);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(127, 200, 248, 0.25);
+  color: inherit;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* 全局焦点样式 */
+:focus-visible {
+  outline: 2px solid rgba(127, 200, 248, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 链接基础样式 */
+a {
+  color: var(--color-normal);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+/* 图片预览 z-index 覆盖 */
 #v3-img-preview-container-id .v-images-wrap {
-    z-index: 1100;
+  z-index: 1100;
 }
 
 #v3-img-preview-container-id .img-container {
-    z-index: 1100;
+  z-index: 1100;
 }
 
-#v3-img-preview-container-id .arrow, #v3-img-preview-container-id .v3-img-preview-toolbar, #v3-img-preview-container-id .close-btn {
-    z-index: 1101;
+#v3-img-preview-container-id .arrow,
+#v3-img-preview-container-id .v3-img-preview-toolbar,
+#v3-img-preview-container-id .close-btn {
+  z-index: 1101;
+}
+
+/* 页面渐入过渡 */
+.page-fade-enter-active {
+  animation: fadeIn 0.3s ease;
+}
+
+.page-fade-leave-active {
+  animation: fadeOut 0.2s ease;
+}
+
+/* 通用淡入动画 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
