@@ -5,7 +5,7 @@ import { aesDecrypt } from "./crypto";
 const utils = {
     // 防抖
     debounce: (function () {
-        let timer: NodeJS.Timeout | null = null;
+        let timer: ReturnType<typeof setTimeout> | null = null;
         return (fn: () => void, delay = 300) => {
             if (timer) clearTimeout(timer);
             timer = setTimeout(() => {
@@ -17,7 +17,7 @@ const utils = {
 
     // 节流
     throttle: (function () {
-        let timer: NodeJS.Timeout | null = null;
+        let timer: ReturnType<typeof setTimeout> | null = null;
         return (fn: () => void, delay = 300) => {
             if (timer) return;
             timer = setTimeout(() => {
