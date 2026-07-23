@@ -15,8 +15,8 @@
 import { defineComponent, onActivated, ref, inject } from "vue";
 import MdEditor from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
-import useProcessControl from "@/hooks/useProcessControl";
-import { ApiObject, ProcessInterface } from "@/d.ts/plugin";
+import useProcessControl from "@/composables/useProcessControl";
+import { ApiObject, ProcessInterface } from "@/types";
 import { codeConfig, contextConfig } from "@/config/program";
 
 export default defineComponent({

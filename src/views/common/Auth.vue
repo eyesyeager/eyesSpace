@@ -6,7 +6,7 @@ import { defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { siteConfig } from "@/config/program";
 import utils from "@/utils/helper";
-import useProcessControl from "@/hooks/useProcessControl";
+import useProcessControl from "@/composables/useProcessControl";
 
 export default defineComponent({
   setup() {

@@ -1,4 +1,4 @@
-import { ContextInterface } from "@/d.ts/modules/context";
+import type { ContextInterface } from "@/types/store/context";
 
 const context: ContextInterface = {
     data: {},

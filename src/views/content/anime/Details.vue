@@ -8,12 +8,12 @@
 <script lang="ts">
 import { defineComponent, onMounted, inject, ref } from "vue";
 import { useRouter } from "vue-router";
-import useProcessControl from "@/hooks/useProcessControl";
-import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
+import useProcessControl from "@/composables/useProcessControl";
+import { ProcessInterface, ApiObject } from "@/types";
 import { CardDirection, CardList, CardType } from "@/constant";
 import { codeConfig } from "@/config/program";
-import { AnimeItem } from "@/components/content/anime";
-import { WordCard } from "@/components/general/card"; 
+import { AnimeItem } from "@/components/business/anime";
+import { WordCard } from "@/components/common/card"; 
 import utils from "@/utils/helper";
 
 export default defineComponent({
@@ -50,7 +50,7 @@ export default defineComponent({
       useProcessControl(true, {
         direction: CardDirection.row,
         cardType: CardType.CardList,
-        cardList: CardList.AnimeCardList
+        cardList: CardList.AnimeCardList,
       });
     });
 

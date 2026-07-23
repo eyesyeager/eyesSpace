@@ -9,14 +9,14 @@
 
 <script lang="ts">
 import { defineComponent, inject, onActivated, ref, onBeforeMount } from 'vue';
-import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
-import useProcessControl from "@/hooks/useProcessControl";
+import { ProcessInterface, ApiObject } from "@/types";
+import useProcessControl from "@/composables/useProcessControl";
 import { CardDirection, CardType, CardList } from "@/constant";
 import { codeConfig } from "@/config/program";
-import { goBoth, GoBothType } from "@/hooks/useGoBoth";
-import { Wait } from "@/components/general/popup";
-import Pagination from "@/components/general/Pagination/pagination.vue";
-import { ProductList } from "@/components/content/product";
+import { goBoth, GoBothType } from "@/composables/useGoBoth";
+import { Wait } from "@/components/common/popup";
+import Pagination from "@/components/common/Pagination/pagination.vue";
+import { ProductList } from "@/components/business/product";
 
 export default defineComponent({
     name: "Product",
@@ -62,7 +62,7 @@ export default defineComponent({
             useProcessControl(true, {
                 direction: CardDirection.row,
                 cardType: CardType.CardList,
-                cardList: CardList.ProductCardList
+                cardList: CardList.ProductCardList,
             });
         })
 

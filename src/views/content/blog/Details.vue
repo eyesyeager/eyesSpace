@@ -8,14 +8,14 @@
 <script lang="ts">
 import { defineComponent, onMounted, inject, ref } from "vue";
 import { useRouter } from "vue-router";
-import useProcessControl from "@/hooks/useProcessControl";
-import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
+import useProcessControl from "@/composables/useProcessControl";
+import { ProcessInterface, ApiObject } from "@/types";
 import { CardDirection, CardList, CardType } from "@/constant";
 import { codeConfig } from "@/config/program";
-import { MdEditor, HeadMeta } from "@/components/content/blogDetail";
-import { goBoth, GoBothType } from "@/hooks/useGoBoth";
-import { blogDetailContext } from "@/components/content/blogDetail/businessTs/blogDetailContext";
-import blogDetailProcess from "@/components/content/blogDetail/businessTs/blogDetailProcess";
+import { MdEditor, HeadMeta } from "@/components/business/blogDetail";
+import { goBoth, GoBothType } from "@/composables/useGoBoth";
+import { blogDetailContext } from "@/components/business/blogDetail/businessTs/blogDetailContext";
+import blogDetailProcess from "@/components/business/blogDetail/businessTs/blogDetailProcess";
 import utils from "@/utils/helper";
 
 export default defineComponent({
@@ -50,7 +50,8 @@ export default defineComponent({
         direction: CardDirection.row,
         cardType: CardType.CardList,
         cardList: CardList.BlogDetailCardList,
-        follow: true
+        follow: true,
+        followIndex: 2,
       }, true);
     });
 

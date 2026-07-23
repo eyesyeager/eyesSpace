@@ -1,6 +1,6 @@
-import { ProcessInterface, PopupInterface, ComponentInterface } from "@/d.ts/modules/process";
+import type { ProcessInterface, PopupInterface, ComponentInterface } from "@/types/store/process";
 import { reactive, ref } from "vue";
-import { RollType } from "@/hooks/useGoBoth";
+import { RollType } from "@/composables/useGoBoth";
 
 // 弹出层逻辑控制
 const Popup: PopupInterface = {
@@ -95,6 +95,7 @@ const Component: ComponentInterface = {
     sideCardChoice: ref([]),
     sideCardList: ref(0),
     sideCardFollow: ref(false),
+    sideCardFollowIndex: ref(0),
 
     // 底部组件
     footerStatus: ref(true),

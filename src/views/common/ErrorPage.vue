@@ -16,9 +16,9 @@
 <script lang="ts">
 import { defineComponent, inject, onMounted, reactive, UnwrapNestedRefs, nextTick } from "vue";
 import { useRouter } from "vue-router";
-import { ProcessInterface, ContextInterface } from "@/d.ts/plugin";
+import { ProcessInterface, ContextInterface } from "@/types";
 import resource from "@/config/resource";
-import useProcessControl from "@/hooks/useProcessControl";
+import useProcessControl from "@/composables/useProcessControl";
 import { errorConfig, errorPath } from "@/config/site";
 import { Dialogs } from "@/constant";
 import { siteConfig } from "@/config/program";
@@ -93,7 +93,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
 
 .errorPage {
   .errorBox {
@@ -119,20 +118,20 @@ export default defineComponent({
         width: 120px;
         height: 40px;
         padding: 10px;
-        background: $white;
+        background: var(--color-white);
         border-radius: 8px;
-        box-shadow: $shadow-card;
-        -webkit-box-shadow: $shadow-card;
-        -moz-box-shadow: $shadow-card;
+        box-shadow: var(--shadow-card);
+        -webkit-box-shadow: var(--shadow-card);
+        -moz-box-shadow: var(--shadow-card);
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: box-shadow $transition-normal, transform $transition-normal;
+        transition: box-shadow var(--transition-normal), transform var(--transition-normal);
         &:hover {
-          box-shadow: $shadow-card-hover;
-          -webkit-box-shadow: $shadow-card-hover;
-          -moz-box-shadow: $shadow-card-hover;
+          box-shadow: var(--shadow-card)-hover;
+          -webkit-box-shadow: var(--shadow-card)-hover;
+          -moz-box-shadow: var(--shadow-card)-hover;
           transform: translateY(-1px);
         }
         img {

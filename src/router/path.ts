@@ -12,7 +12,7 @@ const publicPath = {
     book: "/book",
     product: "/product",
     friend: "/friend",
-    version: "version",
+    version: "/version",
     about: "/about",
     errorPath: {
         route: "/error/errorRoute",

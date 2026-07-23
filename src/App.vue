@@ -25,10 +25,10 @@ import {
   UserInterface,
   ProcessInterface,
   WindowInterface,
-} from "@/d.ts/plugin";
+} from "@/types";
 import { useRouter } from "vue-router";
 import { siteConfig, codeConfig } from "@/config/program";
-import { Mask, Load, Tip, Alert, Dialog } from "@/components/general/popup";
+import { Mask, Load, Tip, Alert, Dialog } from "@/components/common/popup";
 import resource from "@/config/resource";
 import { preloadList, errorPath } from "@/config/site";
 import preload from "@/utils/preLoad";

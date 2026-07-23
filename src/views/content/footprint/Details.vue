@@ -11,14 +11,14 @@
 <script lang="ts">
 import { defineComponent, onMounted, onBeforeMount, inject, ref } from "vue";
 import { useRouter } from "vue-router";
-import useProcessControl from "@/hooks/useProcessControl";
-import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
+import useProcessControl from "@/composables/useProcessControl";
+import { ProcessInterface, ApiObject } from "@/types";
 import { CardDirection, CardList, CardType } from "@/constant";
 import { codeConfig } from "@/config/program";
-import { FootprintHead, FootprintContentList } from "@/components/content/footprint";
-import { Wait } from "@/components/general/popup";
-import Pagination from "@/components/general/Pagination/pagination.vue";
-import { goBoth, GoBothType } from "@/hooks/useGoBoth";
+import { FootprintHead, FootprintContentList } from "@/components/business/footprint";
+import { Wait } from "@/components/common/popup";
+import Pagination from "@/components/common/Pagination/pagination.vue";
+import { goBoth, GoBothType } from "@/composables/useGoBoth";
 import utils from "@/utils/helper";
 
 export default defineComponent({
@@ -76,7 +76,7 @@ export default defineComponent({
       useProcessControl(true, {
         direction: CardDirection.row,
         cardType: CardType.CardList,
-        cardList: CardList.FootprintCardList
+        cardList: CardList.FootprintCardList,
       });
     });
 

@@ -23,6 +23,7 @@
   --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
   --shadow-avatar: 0 2px 8px rgba(0, 0, 0, 0.15);
   --shadow-header: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-dropdown: 0 4px 16px rgba(0, 0, 0, 0.12);
 
   /* ========== 圆角 ========== */
   --radius-sm: 6px;

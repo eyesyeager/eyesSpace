@@ -22,16 +22,16 @@ import {
     ref,
     watch,
 } from "vue";
-import { ProcessInterface, ApiObject } from "@/d.ts/plugin";
-import useProcessControl from "@/hooks/useProcessControl";
+import { ProcessInterface, ApiObject } from "@/types";
+import useProcessControl from "@/composables/useProcessControl";
 import { useRouter } from "vue-router";
 import { CardDirection, CardType, CardList } from "@/constant";
 import { codeConfig } from "@/config/program";
-import { Wait } from "@/components/general/popup";
-import { BlogList } from "@/components/content/blog";
-import { blogContext } from "@/components/content/blog/businessTs/blogContext";
-import Pagination from "@/components/general/Pagination/pagination.vue";
-import { goBoth, GoBothType } from "@/hooks/useGoBoth";
+import { Wait } from "@/components/common/popup";
+import { BlogList } from "@/components/business/blog";
+import { blogContext } from "@/components/business/blog/businessTs/blogContext";
+import Pagination from "@/components/common/Pagination/pagination.vue";
+import { goBoth, GoBothType } from "@/composables/useGoBoth";
 
 export default defineComponent({
     name: "Blog",
@@ -118,6 +118,8 @@ export default defineComponent({
                 direction: CardDirection.row,
                 cardType: CardType.CardList,
                 cardList: CardList.BlogCardList,
+                follow: true,
+                followIndex: 2,
             });
         });
 

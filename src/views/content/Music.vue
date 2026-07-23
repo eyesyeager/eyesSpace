@@ -8,11 +8,11 @@
 
 <script lang="ts">
 import { defineComponent, inject, onActivated, onMounted, ref } from 'vue';
-import { ProcessInterface, ContextInterface, ApiObject, UserInterface } from "@/d.ts/plugin";
-import { MusicPlayer } from "@/components/content/music";
-import useProcessControl from "@/hooks/useProcessControl";
+import { ProcessInterface, ContextInterface, ApiObject, UserInterface } from "@/types";
+import { MusicPlayer } from "@/components/business/music";
+import useProcessControl from "@/composables/useProcessControl";
 import { codeConfig } from "@/config/program";
-import { Wait } from "@/components/general/popup";
+import { Wait } from "@/components/common/popup";
 import { userCenterContext } from "@/config/site";
 
 export default defineComponent({

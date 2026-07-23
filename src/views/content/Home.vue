@@ -26,8 +26,8 @@ import {
     inject,
     onActivated,
 } from "vue";
-import { ContextInterface } from "@/d.ts/plugin";
-import useProcessControl from "@/hooks/useProcessControl";
+import { ContextInterface } from "@/types";
+import useProcessControl from "@/composables/useProcessControl";
 import { useRouter } from "vue-router";
 import { headerConfig } from "@/config/site";
 
@@ -63,7 +63,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
 
 .home {
     width: 100%;
@@ -83,15 +82,15 @@ export default defineComponent({
             border-radius: 50%;
             margin: 0px auto;
             margin-bottom: 20px;
-            box-shadow: $shadow-avatar;
-            -webkit-box-shadow: $shadow-avatar;
-            -moz-box-shadow: $shadow-avatar;
-            transition: transform $transition-slow, box-shadow $transition-slow;
+            box-shadow: var(--shadow-avatar);
+            -webkit-box-shadow: var(--shadow-avatar);
+            -moz-box-shadow: var(--shadow-avatar);
+            transition: transform var(--transition-slow), box-shadow var(--transition-slow);
             &:hover {
                 transform: scale(1.05);
-                box-shadow: $shadow-card-hover;
-                -webkit-box-shadow: $shadow-card-hover;
-                -moz-box-shadow: $shadow-card-hover;
+                box-shadow: var(--shadow-card)-hover;
+                -webkit-box-shadow: var(--shadow-card)-hover;
+                -moz-box-shadow: var(--shadow-card)-hover;
             }
         }
 
@@ -101,13 +100,13 @@ export default defineComponent({
             .name {
                 font-size: 22px;
                 font-weight: 600;
-                color: $title;
+                color: var(--color-title);
                 text-align: center;
                 margin-bottom: 10px;
             }
 
             .motto {
-                color: $normal;
+                color: var(--color-normal);
                 text-align: center;
                 font-size: 14px;
                 line-height: 1.6;
@@ -115,7 +114,7 @@ export default defineComponent({
         }
 
         .link {
-            color: $normal;
+            color: var(--color-normal);
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -132,11 +131,11 @@ export default defineComponent({
                     border-radius: 6px;
                     cursor: pointer;
                     font-size: 14px;
-                    transition: color $transition-fast, background $transition-fast;
+                    transition: color var(--transition-fast), background var(--transition-fast);
 
                     &:hover {
-                        color: $accent;
-                        background: rgba($accent, 0.08);
+                        color: var(--color-accent);
+                        background: rgba(127, 200, 248, 0.08);
                     }
                 }
             }

@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import { createPinia } from "pinia";
 import App from "./App.vue";
 import lazyPlugin from "vue3-lazy";
 import { $router, $api, $process, $context, $user, $window } from "@/plugins/index";
@@ -12,6 +13,11 @@ import '@/libs/statistics.js';
 
 const app = createApp(App);
 
+// Pinia 状态管理
+const pinia = createPinia();
+app.use(pinia);
+
+// 插件注册
 const plugins = [$router, $api, $process, $context, $user, $window];
 plugins.forEach(plugin => {
     app.use(plugin);

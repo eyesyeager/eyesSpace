@@ -4,8 +4,8 @@
 
 <script lang="ts">
 import { defineComponent, onActivated, ref, inject, onMounted } from "vue";
-import useProcessControl from "@/hooks/useProcessControl";
-import { ApiObject, ProcessInterface } from "@/d.ts/plugin";
+import useProcessControl from "@/composables/useProcessControl";
+import { ApiObject, ProcessInterface } from "@/types";
 import { codeConfig, contextConfig } from "@/config/program";
 import { useRouter } from "vue-router";
 import L from 'leaflet'

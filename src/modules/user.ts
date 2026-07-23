@@ -1,4 +1,4 @@
-import { UserInterface } from "@/d.ts/modules/user";
+import type { UserInterface } from "@/types/store/user";
 
 // 用户信息
 const user: UserInterface = {

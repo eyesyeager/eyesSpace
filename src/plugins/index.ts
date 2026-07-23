@@ -1,7 +1,7 @@
 // 插件注册
 import { App } from "vue";
 import $router from "@/router";
-import api from "@/server/api";
+import api from "@/services";
 import process from "@/modules/process";
 import { context } from "@/modules/context";
 import { user } from "@/modules/user";

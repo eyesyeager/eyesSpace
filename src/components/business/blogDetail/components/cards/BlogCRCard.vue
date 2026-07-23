@@ -1,0 +1,64 @@
+<template>
+  <standard-card title="版权声明" :icon="icon">
+    <div class="card blogCRCard">
+      <div class="listItem">
+          <div>文章作者</div>
+          <div>{{ownerName}}</div>
+      </div>
+      <div class="listItem">
+          <div>文章链接</div>
+          <div class="copy" @click="doCopy">点击复制</div>
+      </div>
+      <div class="word">转载请注明出处！</div>
+    </div>
+  </standard-card>
+</template>
+
+<script lang="ts">
+import { defineComponent, inject } from "vue";
+import StandardCard from "@/components/common/card/components/StandardCard.vue";
+import { ProcessInterface, ContextInterface } from "@/types";
+import resource from "@/config/resource";
+import { Wait } from "@/components/common/popup";
+import utils from "@/utils/helper";
+
+export default defineComponent({
+  components: { StandardCard, Wait },
+  setup() {
+    const $process = inject<ProcessInterface>("$process")!;
+    const $context = inject<ContextInterface>("$context")!;
+
+    function doCopy() {
+        utils.doCopy(location.href);
+        $process.tipShow.success("复制成功");
+    }
+
+    return {
+      icon: resource.copyright,
+      ownerName: $context.data.ownerName,
+      spaceName: $context.data.spaceName,
+      doCopy
+    };
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+
+.blogCRCard {
+  color: var(--color-normal);
+  .listItem {
+    height: 25px;
+    line-height: 25px;
+    display: flex;
+    justify-content: space-between;
+    .copy {
+      color: rgb(6, 122, 122);
+      cursor: pointer;
+    }
+  }
+  .word {
+    margin-top: 10px;
+  }
+}
+</style>

@@ -14,9 +14,10 @@
     "skipLibCheck": true,
     "baseUrl":"./",
     "paths":{
-      "@/*":["src/*"]
+      "@/*":["src/*"],
+      "@types/*":["src/types/*"]
     },
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/libs/title_joke.js"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

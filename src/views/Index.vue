@@ -20,8 +20,8 @@
 
 <script lang="ts">
 import { defineComponent, ref, inject, onMounted } from "vue";
-import { ProcessInterface, WindowInterface } from "@/d.ts/plugin";
-import { Header, SideBar, SideCard, Footer } from "@/components/index";
+import { ProcessInterface, WindowInterface } from "@/types";
+import { Header, SideBar, SideCard, Footer } from "@/components/layout";
 import { siteConfig } from "@/config/program";
 
 export default defineComponent({
@@ -97,6 +97,7 @@ export default defineComponent({
     margin-top: 70px;
     padding-bottom: 40px;
     display: flex;
+    align-items: flex-start;
     flex-direction: v-bind(sideCardPosition);
     justify-content: space-between;
     .cardGroup {

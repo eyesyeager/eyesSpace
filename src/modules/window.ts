@@ -1,4 +1,4 @@
-import { WindowInterface, WindowSizeInterface, WindowDistanceInterface } from "@/d.ts/modules/window";
+import type { WindowInterface, WindowSizeInterface, WindowDistanceInterface } from "@/types/store/window";
 import { ref } from "vue";
 
 const size: WindowSizeInterface = {

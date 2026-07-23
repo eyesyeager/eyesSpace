@@ -10,13 +10,13 @@
 
 <script lang="ts">
 import { defineComponent, inject, onActivated, onMounted, ref } from 'vue';
-import { ProcessInterface, ApiObject, UserInterface, ContextInterface } from "@/d.ts/plugin";
-import useProcessControl from "@/hooks/useProcessControl";
-import { Wait } from "@/components/general/popup";
-import { VideoInfo, VideoPlayer, FuncBar } from "@/components/content/video";
+import { ProcessInterface, ApiObject, UserInterface, ContextInterface } from "@/types";
+import useProcessControl from "@/composables/useProcessControl";
+import { Wait } from "@/components/common/popup";
+import { VideoInfo, VideoPlayer, FuncBar } from "@/components/business/video";
 import { codeConfig } from "@/config/program";
 import { userCenterContext } from "@/config/site";
-import videoConfig from "@/components/content/video/config";
+import videoConfig from "@/components/business/video/config";
 import utils from "@/utils/helper";
 
 export default defineComponent({
@@ -88,7 +88,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
 
 .video {
   width: 100%;
