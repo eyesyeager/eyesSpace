@@ -77,6 +77,8 @@ export default defineComponent({
         direction: CardDirection.row,
         cardType: CardType.CardList,
         cardList: CardList.FootprintCardList,
+        follow: true,
+        followIndex: 0,
       });
     });
 
