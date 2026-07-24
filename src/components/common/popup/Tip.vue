@@ -53,7 +53,7 @@ export default defineComponent({
 
 .tip {
   position: fixed;
-  z-index: 1000;
+  z-index: var(--z-popup);
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
@@ -63,8 +63,8 @@ export default defineComponent({
     max-width: 320px;
     min-height: 36px;
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     box-shadow: var(--shadow-lg);
     -webkit-box-shadow: var(--shadow-lg);
     -moz-box-shadow: var(--shadow-lg);

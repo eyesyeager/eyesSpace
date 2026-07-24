@@ -83,8 +83,8 @@ export default defineComponent({
         transform: translateX(-50%);
         padding: 8px 0;
         background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: saturate(180%) blur(20px);
-        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
         border-radius: 8px;
         box-shadow: var(--shadow-dropdown);
         -webkit-box-shadow: var(--shadow-dropdown);

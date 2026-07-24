@@ -107,13 +107,13 @@ export default defineComponent({
   margin: 0 auto;
   height: 60px;
   padding: 20px 40px 20px 40px;
-  background: rgba(var(--color-white), 0.72);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   color: var(--color-normal);
   transition: top 0.5s, box-shadow var(--transition-normal);
   position: fixed;
-  z-index: 998;
+  z-index: var(--z-header);
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -162,9 +162,9 @@ export default defineComponent({
       transition: transform var(--transition-normal), box-shadow var(--transition-normal);
       &:hover {
         transform: scale(1.1);
-        box-shadow: var(--shadow-card)-hover;
-        -webkit-box-shadow: var(--shadow-card)-hover;
-        -moz-box-shadow: var(--shadow-card)-hover;
+        box-shadow: var(--shadow-card-hover);
+        -webkit-box-shadow: var(--shadow-card-hover);
+        -moz-box-shadow: var(--shadow-card-hover);
       }
     }
   }

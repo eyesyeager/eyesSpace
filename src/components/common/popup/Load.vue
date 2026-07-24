@@ -44,7 +44,7 @@ export default defineComponent({
   height: 100vh;
   background-color: rgb(55, 71, 79);
   position: fixed;
-  z-index: 1001;
+  z-index: var(--z-load);
   top: 0;
   left: 0;
   .circ {

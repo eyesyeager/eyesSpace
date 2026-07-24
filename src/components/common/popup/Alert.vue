@@ -86,14 +86,14 @@ export default defineComponent({
   padding: 16px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-radius: 12px;
   box-shadow: var(--shadow-xl);
   -webkit-box-shadow: var(--shadow-xl);
   -moz-box-shadow: var(--shadow-xl);
   position: fixed;
-  z-index: 999;
+  z-index: var(--z-popup);
   top: 70px;
   right: 24px;
   .title {

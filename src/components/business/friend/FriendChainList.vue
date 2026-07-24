@@ -59,9 +59,9 @@ export default defineComponent({
         cursor: pointer;
         transition: box-shadow var(--transition-normal), transform var(--transition-normal);
         &:hover {
-            box-shadow: var(--shadow-card)-hover;
-            -webkit-box-shadow: var(--shadow-card)-hover;
-            -moz-box-shadow: var(--shadow-card)-hover;
+            box-shadow: var(--shadow-card-hover);
+            -webkit-box-shadow: var(--shadow-card-hover);
+            -moz-box-shadow: var(--shadow-card-hover);
             transform: translateY(-2px);
         }
         .cover {

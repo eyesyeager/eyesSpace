@@ -59,8 +59,8 @@ export default defineComponent({
   width: 100%;
   height: 100px;
   background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-top: 1px solid rgba(0, 0, 0, 0.04);
   color: var(--color-normal);
   display: flex;

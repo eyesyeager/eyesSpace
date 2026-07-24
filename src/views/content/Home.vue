@@ -88,9 +88,9 @@ export default defineComponent({
             transition: transform var(--transition-slow), box-shadow var(--transition-slow);
             &:hover {
                 transform: scale(1.05);
-                box-shadow: var(--shadow-card)-hover;
-                -webkit-box-shadow: var(--shadow-card)-hover;
-                -moz-box-shadow: var(--shadow-card)-hover;
+                box-shadow: var(--shadow-card-hover);
+                -webkit-box-shadow: var(--shadow-card-hover);
+                -moz-box-shadow: var(--shadow-card-hover);
             }
         }
 

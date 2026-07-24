@@ -77,14 +77,14 @@ export default defineComponent({
   max-width: calc(100vw - 40px);
   padding: 24px;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border-radius: 12px;
   box-shadow: var(--shadow-xl);
   -webkit-box-shadow: var(--shadow-xl);
   -moz-box-shadow: var(--shadow-xl);
   position: fixed;
-  z-index: 1000;
+  z-index: var(--z-popup);
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);

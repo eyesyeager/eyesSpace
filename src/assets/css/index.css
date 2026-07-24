@@ -53,17 +53,17 @@ a:hover {
 
 /* 图片预览 z-index 覆盖 */
 #v3-img-preview-container-id .v-images-wrap {
-  z-index: 1100;
+  z-index: var(--z-image-preview);
 }
 
 #v3-img-preview-container-id .img-container {
-  z-index: 1100;
+  z-index: var(--z-image-preview);
 }
 
 #v3-img-preview-container-id .arrow,
 #v3-img-preview-container-id .v3-img-preview-toolbar,
 #v3-img-preview-container-id .close-btn {
-  z-index: 1101;
+  z-index: calc(var(--z-image-preview) + 1);
 }
 
 /* 页面渐入过渡 */

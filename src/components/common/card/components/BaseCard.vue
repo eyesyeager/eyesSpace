@@ -18,9 +18,9 @@
     will-change: box-shadow, transform;
 
     &:hover {
-        box-shadow: var(--shadow-card)-hover;
-        -webkit-box-shadow: var(--shadow-card)-hover;
-        -moz-box-shadow: var(--shadow-card)-hover;
+        box-shadow: var(--shadow-card-hover);
+        -webkit-box-shadow: var(--shadow-card-hover);
+        -moz-box-shadow: var(--shadow-card-hover);
         transform: translateY(-1px);
     }
 }

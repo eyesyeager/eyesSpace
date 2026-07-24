@@ -4,7 +4,7 @@
     <template v-for="item in leftPage" :key="item">
         <div 
             v-if="typeof item == 'string' || item > 0"
-            :class="{current: currentPage == item, number: typeof item == 'number'}" 
+            :class="{current: currentPage == item, number: typeof item == 'number', ellipsis: typeof item == 'string'}" 
             @click="pageChange(item)"
         >
             {{item}}
@@ -13,7 +13,7 @@
     <template v-for="item in rightPage" :key="item">
         <div 
             v-if="typeof item == 'string' || item <= pages"
-            :class="{current: currentPage == item, number: typeof item == 'number'}" 
+            :class="{current: currentPage == item, number: typeof item == 'number', ellipsis: typeof item == 'string'}" 
             @click="pageChange(item)"
         >
             {{item}}
@@ -141,6 +141,11 @@ export default defineComponent({
 }
 
 .ellipsis {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: default !important;
 }
 </style>

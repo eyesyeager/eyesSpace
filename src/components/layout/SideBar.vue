@@ -57,14 +57,14 @@ export default defineComponent({
 
 .sideBar {
   position: fixed;
-  z-index: 1000;
+  z-index: var(--z-sidebar);
   top: 0;
   right: 0;
   width: 300px;
   height: 100vh;
   background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   padding: 0 20px;
   overflow-y: auto;
   .ownerCard {
@@ -103,9 +103,9 @@ export default defineComponent({
         color: var(--color-normal);
       }
       &:hover {
-        box-shadow: var(--shadow-card)-hover;
-        -webkit-box-shadow: var(--shadow-card)-hover;
-        -moz-box-shadow: var(--shadow-card)-hover;
+        box-shadow: var(--shadow-card-hover);
+        -webkit-box-shadow: var(--shadow-card-hover);
+        -moz-box-shadow: var(--shadow-card-hover);
         transform: translateY(-1px);
         background: rgba(127, 200, 248, 0.05);
         img {

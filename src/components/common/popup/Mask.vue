@@ -47,7 +47,7 @@ export default defineComponent({
 
 .mask {
     position: fixed;
-    z-index: 999;
+    z-index: var(--z-mask);
     top: 0;
     left: 0;
     width: 100vw;

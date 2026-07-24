@@ -45,9 +45,9 @@ export default defineComponent({
         transition: transform var(--transition-normal);
     }
     &:hover {
-        box-shadow: var(--shadow-card)-hover;
-        -webkit-box-shadow: var(--shadow-card)-hover;
-        -moz-box-shadow: var(--shadow-card)-hover;
+        box-shadow: var(--shadow-card-hover);
+        -webkit-box-shadow: var(--shadow-card-hover);
+        -moz-box-shadow: var(--shadow-card-hover);
         transform: translateY(-1px);
         .icon {
             transform: scale(1.1);
