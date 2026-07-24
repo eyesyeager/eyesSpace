@@ -24,6 +24,19 @@ export default ({ command, mode }) => {
 			'process.env': process.env,
 			__VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
 		},
+		// MapLibre GL JS v6 使用了 BigInt（Safari 14+ 才支持），提升 esbuild 目标
+		build: {
+			target: 'es2022',
+		},
+		optimizeDeps: {
+			include: ['maplibre-gl'],
+			esbuildOptions: {
+				target: 'es2022',
+			},
+		},
+		esbuild: {
+			target: 'es2022',
+		},
 		server: {
 			host: "0.0.0.0",
 			port: 5173,

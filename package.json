@@ -19,6 +19,7 @@
     "axios": "^0.24.0",
     "crypto-js": "^4.2.0",
     "leaflet": "^1.9.4",
+    "maplibre-gl": "^6.0.0",
     "md-editor-v3": "^2.2.1",
     "nprogress": "^0.2.0",
     "pinia": "^4.0.2",

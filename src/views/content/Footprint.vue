@@ -8,45 +8,61 @@ import useProcessControl from "@/composables/useProcessControl";
 import { ApiObject, ProcessInterface } from "@/types";
 import { codeConfig, contextConfig } from "@/config/program";
 import { useRouter } from "vue-router";
-import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
-
-// 修复 Leaflet 默认 marker 图标在 Vite 打包后的路径问题
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
-import markerIcon from 'leaflet/dist/images/marker-icon.png'
-import markerShadow from 'leaflet/dist/images/marker-shadow.png'
-
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconRetinaUrl: markerIcon2x,
-    iconUrl: markerIcon,
-    shadowUrl: markerShadow,
-});
+import * as maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 export default defineComponent({
     name: "Footprint",
-    components: {},
     setup() {
         const $api = inject<ApiObject>("$api")!;
         const $process = inject<ProcessInterface>("$process")!;
         const router = useRouter();
-        const map = ref<any>();
+        const map = ref<any>(null);
 
         function initMap() {
             $api.getContextItem([contextConfig.footprintInit]).then(({ code, msg, data }) => {
                 if (code == codeConfig.success) {
-                    // 初始化地图
                     const config = JSON.parse(data.content);
-                    map.value = L.map("footprint", JSON.parse(config.mapInit));
-                    L.tileLayer(
-                        config.layer,
-                        {
-                            attribution: config.attribution,
-                        }
-                    ).addTo(map.value);
+                    const leafletOptions = JSON.parse(config.mapInit);
+                    // Leaflet 的 center 是 [lat, lng]，MapLibre 需要 [lng, lat]
+                    const center: [number, number] = leafletOptions.center
+                        ? [leafletOptions.center[1], leafletOptions.center[0]]
+                        : [105, 35];
+                    const zoom = leafletOptions.zoom ?? 2;
 
-                    // 获取并填充足迹信息
-                    getFootprint();
+                    map.value = new maplibregl.Map({
+                        container: 'footprint',
+                        minZoom: 2,
+                        maxZoom: 6,
+                        attributionControl: false,
+                        style: {
+                            version: 8,
+                            sources: {
+                                'raster-tiles': {
+                                    type: 'raster',
+                                    tiles: [config.layer],
+                                    tileSize: 256,
+                                    attribution: config.attribution || '',
+                                }
+                            },
+                            layers: [{
+                                id: 'raster-layer',
+                                type: 'raster',
+                                source: 'raster-tiles',
+                            }]
+                        },
+                        center,
+                        zoom,
+                    });
+
+                    // 添加球形投影切换控件
+                    map.value.addControl(new maplibregl.GlobeControl(), 'top-right');
+
+                    // 样式加载完成后设置球形投影
+                    map.value.on('style.load', () => {
+                        map.value.setProjection({ type: 'globe' });
+                        getFootprint();
+                    });
                 } else {
                     $process.tipShow.error("地图初始化失败！" + msg);
                 }
@@ -66,21 +82,22 @@ export default defineComponent({
         }
 
         function addMarker(id: number, city: string, latitude: number, longitude: number) {
-            const labelMarker = L.marker([latitude, longitude], {
-                zIndexOffset: 0,
-                riseOnHover: true,
-                title: city,
-            });
-            labelMarker.on("click", () => {
+            if (!map.value) return;
+            const marker = new maplibregl.Marker()
+                .setLngLat([longitude, latitude])
+                .addTo(map.value);
+
+            const el = marker.getElement();
+            el.title = city;
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', () => {
                 window.open(router.resolve(`/footprint/details/${id}`).href, "_blank");
             });
-            labelMarker.addTo(map.value);
         }
 
         onActivated(() => {
             useProcessControl(false, false, false);
-            // Keep-alive 缓存恢复后，更新地图尺寸以防止瓦片错位
-            map.value?.invalidateSize();
+            map.value?.resize();
         });
 
         onMounted(() => {
@@ -105,5 +122,6 @@ export default defineComponent({
     margin: 0;
     width: 100vw;
     height: 100vh;
+    background: #000000;
 }
 </style>
