@@ -71,7 +71,7 @@ export default defineComponent({
     .content {
         width: 370px;
         position: fixed;
-        top: 50%;
+        top: 40%;
         left: 50%;
         transform: translate(-50%, -50%);
 
