@@ -97,7 +97,7 @@ export default defineComponent({
     margin-top: 70px;
     padding-bottom: 40px;
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     flex-direction: v-bind(sideCardPosition);
     justify-content: space-between;
     .cardGroup {

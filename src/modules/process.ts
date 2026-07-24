@@ -84,6 +84,7 @@ const Component: ComponentInterface = {
     // 顶部导航栏
     headerStatus: ref(true),
     headerCheckLock: ref(true),
+    headerCollapse: ref(false),
     headerCheckSwitch(clientHeight, HTMLHeight) {
         Component.headerCheckLock.value = HTMLHeight < clientHeight;
     },

@@ -49,6 +49,8 @@ export default defineComponent({
         direction: CardDirection.row,
         cardType: CardType.CardList,
         cardList: CardList.BookCardList,
+        follow: true,
+        followIndex: 0,
       });
     });
 

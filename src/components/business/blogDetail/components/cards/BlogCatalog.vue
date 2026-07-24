@@ -4,7 +4,7 @@
           <Wait :show="show" :fail="isFail" height="100px">
             <md-atalog v-if="hasHeadings" :editor-id="editorId" :scroll-element="scrollElement" />
             <div v-else class="no-catalog">
-              <span class="no-catalog-text">暂无目录</span>
+              <span class="no-catalog-text">暂无</span>
             </div>
           </Wait>
         </div>

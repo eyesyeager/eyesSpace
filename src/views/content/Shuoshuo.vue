@@ -70,8 +70,10 @@ export default defineComponent({
                     direction: CardDirection.row,
                     cardType: CardType.CardList,
                     cardList: CardList.ShuoCardList,
+                    follow: true,
+                    followIndex: 0,
                 },
-                true
+                true,
             );
         });
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="sideCard" id="sideCard" :class="{ 'sideCard-follow': shouldStickyRoot }">
+  <div class="sideCard" id="sideCard" :class="{ 'sideCard-follow': shouldStickyRoot }" :style="stickyOffsetStyle">
     <!-- Cards 模式 -->
     <div class="cards" v-if="type == CardType.Cards">
       <component class="card" v-for="item in cardChoices" :key="item" :is="cardComponents[item]"/>
@@ -9,7 +9,7 @@
     <template v-else-if="isBlogCardListSplit">
       <owner-card class="card" />
       <data-card class="card" title="博客数据" api="getBlogListInfo" :cardConfig="blogDataCardConfig" />
-      <div class="sticky-group">
+      <div class="sticky-group" :style="stickyOffsetStyle">
         <blog-category-card class="card" />
         <blog-label-card class="card" />
       </div>
@@ -19,7 +19,7 @@
     <template v-else-if="isBlogDetailSplit">
       <owner-card class="card" />
       <blog-data-card class="card" />
-      <div class="sticky-group">
+      <div class="sticky-group" :style="stickyOffsetStyle">
         <blog-catalog class="card" />
         <blog-c-r-card class="card" />
       </div>
@@ -70,6 +70,11 @@ export default defineComponent({
       $process.sideCardFollow.value && $process.sideCardFollowIndex.value === 0
     );
 
+    // 跟随偏移：header 收起时只保留间距 10px，否则 60px(header) + 10px = 70px
+    const stickyOffsetStyle = computed(() => ({
+      top: $process.headerCollapse.value ? "10px" : "70px",
+    }));
+
     // 博客列表页拆分渲染条件
     const isBlogCardListSplit = computed(() =>
       $process.sideCardType.value === CardType.CardList
@@ -97,6 +102,7 @@ export default defineComponent({
       shouldStickyRoot,
       isBlogCardListSplit,
       isBlogDetailSplit,
+      stickyOffsetStyle,
       blogDataCardConfig,
     };
   },
@@ -117,11 +123,19 @@ export default defineComponent({
   .sideCard-follow {
     position: sticky;
     top: 70px;
+    /* 覆盖父级 align-items: stretch，否则侧栏被撑满容器高度后 sticky 失效 */
+    align-self: flex-start;
   }
 
   .sticky-group {
     position: sticky;
     top: 70px;
+  }
+
+  /* header 收起时，sticky 偏移随之下调，避免侧栏与页面顶部留白过大 */
+  .sideCard-follow,
+  .sticky-group {
+    transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 </style>

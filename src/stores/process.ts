@@ -98,6 +98,7 @@ export const useProcessStore = defineStore("process", () => {
     // 顶部导航栏
     const headerStatus = ref(true);
     const headerCheckLock = ref(true);
+    const headerCollapse = ref(false);
 
     function headerCheckSwitch(clientHeight: number, HTMLHeight: number) {
         headerCheckLock.value = HTMLHeight < clientHeight;
@@ -151,6 +152,7 @@ export const useProcessStore = defineStore("process", () => {
         // component
         headerStatus,
         headerCheckLock,
+        headerCollapse,
         headerCheckSwitch,
         sideCardStatus,
         sideCardPosition,

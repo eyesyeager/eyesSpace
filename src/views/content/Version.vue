@@ -68,6 +68,8 @@ export default defineComponent({
         direction: CardDirection.row,
         cardType: CardType.CardList,
         cardList: CardList.VersionCardList,
+        follow: true,
+        followIndex: 0,
       });
     })
 

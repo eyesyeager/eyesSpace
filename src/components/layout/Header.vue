@@ -64,6 +64,7 @@ export default defineComponent({
         if(value == 0) {
           lock = true;
           (document.querySelector(".header") as HTMLElement).style.top = "0px";
+          $process.headerCollapse.value = false;
         }
       }
     );
@@ -74,10 +75,12 @@ export default defineComponent({
         if(lock) return;
         (document.querySelector(".header") as HTMLElement).style.top = "0px";
         lock = true;
+        $process.headerCollapse.value = false;
       }, () => {
         if(!lock || $process.headerCheckLock.value) return;
         (document.querySelector(".header") as HTMLElement).style.top = "-60px";
         lock = false;
+        $process.headerCollapse.value = true;
       });
     });
 

@@ -51,6 +51,8 @@ export default defineComponent({
         direction: CardDirection.row,
         cardType: CardType.CardList,
         cardList: CardList.AnimeCardList,
+        follow: true,
+        followIndex: 0,
       });
     });
 

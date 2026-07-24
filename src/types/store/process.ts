@@ -49,6 +49,7 @@ export interface TipShowInterface {
 export interface ComponentInterface {
     headerStatus: Ref<boolean>;
     headerCheckLock: Ref<boolean>;
+    headerCollapse: Ref<boolean>;
     headerCheckSwitch: (clientHeight: number, HTMLHeight: number) => void;
 
     sideCardStatus: Ref<boolean>;
